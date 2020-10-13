@@ -76,8 +76,11 @@ WSGI_APPLICATION = 'Integracion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'db',
+        'HOST': 'mongodb+srv://admin:<jnyF5uDKgvzvqcez>@cluster0.g8lgx.gcp.mongodb.net/<db>?retryWrites=true&w=majority',
+        'USER': 'admin',
+        'PASSWORD': 'jnyF5uDKgvzvqcez',
     }
 }
 
