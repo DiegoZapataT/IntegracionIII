@@ -7,44 +7,19 @@ def index(request):
 
 def tutorial(request):
 
-    tutorial = open("C:/Users/dzapa/OneDrive/Documentos/GitHub/IntegracionIII/Integracion/Integracion/plantillas/tutorial.html")
-    plt      = Template(tutorial.read())
-    tutorial.close()
-
-    ctx    = Context()
-    pagina = plt.render(ctx)
-
-    return HttpResponse(pagina)
+    return render(request, "Integracion/tutorial.html")
 
 def moda(request):
 
-    moda     = open("C:/Users/dzapa/OneDrive/Documentos/GitHub/IntegracionIII/Integracion/Integracion/plantillas/moda.html")
-    plt      = Template(moda.read())
-    moda.close()
-
-    ctx    = Context()
-    pagina = plt.render(ctx)
-
-    return HttpResponse(pagina)
+   return render(request, "Integracion/moda.html")
 
 def promedio(request):
 
-    promedio = open("C:/Users/dzapa/OneDrive/Documentos/GitHub/IntegracionIII/Integracion/Integracion/plantillas/promedio.html")
-    plt      = Template(promedio.read())
-    promedio.close()
-
-    ctx      = Context()
-    pagina   = plt.render(ctx)
-
-    return HttpResponse(pagina)
+    return render(request, "Integracion/promedio.html")
 
 def regresionlineal(request):
     
-    r_lineal = open("C:/Users/dzapa/OneDrive/Documentos/GitHub/IntegracionIII/Integracion/Integracion/plantillas/regresionlineal.html")
-    plt      = Template(r_lineal.read())
-    r_lineal.close()
+    return render(request, "Integracion/regresionlineal.html")
 
-    ctx      = Context()
-    pagina   = plt.render(ctx)
-
-    return HttpResponse(pagina)
+def faq(request):
+    return render(request, "Integracion/faq.html")

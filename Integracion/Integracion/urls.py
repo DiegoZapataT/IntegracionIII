@@ -19,12 +19,12 @@ from Integracion.views import index, tutorial, moda, promedio, regresionlineal
 from Integracion import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('index/', index),
-    path('tutorial/', tutorial),
-    path('moda/', moda),
-    path('promedio/', promedio),
-    path('regresion/', regresionlineal),
+    path('admin', admin.site.urls),
+    path('tutorial/', views.tutorial),
+    path('moda/', views.moda),
+    path('promedio/', views.promedio),
+    path('regresion/', views.regresionlineal),
+    path('faq/', views.faq),
     path('', views.index),
 
 ]
