@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Integracion.views import index, tutorial, moda, promedio, regresionlineal
+from Integracion import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +25,6 @@ urlpatterns = [
     path('moda/', moda),
     path('promedio/', promedio),
     path('regresion/', regresionlineal),
+    path('', views.index),
 
 ]
