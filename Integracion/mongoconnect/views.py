@@ -32,7 +32,7 @@ def read_post_all(request):
     print (stringval)
     return HttpResponse(stringval)
 
-def getData(request):
+def getData1(request):
     posts = Posts.objects.all()
     stringval = ""
     for post in posts:
@@ -40,11 +40,11 @@ def getData(request):
     stringval += "no"
     return stringval
 
-def getData1(request):
-    m = ""
+def getData(request):
+    m = []
     data = Prueba1.objects.all()
     for d in data:
-        m += "dia: "+d.dias + " "
-    m += "aaaaaaaaaaaaaaaaa"
+        for i in range(len(d.dias)):
+            m.append((d.dias[i],d.casos[i]))
     return m
 

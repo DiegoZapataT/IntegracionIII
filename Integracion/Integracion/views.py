@@ -22,8 +22,9 @@ def moda(request):
     y = []
     data = getData(request)
     
-    x = range(1,11)
-    y = sample(range(20), len(x))
+    for d in data:
+        x.append(d[0])
+        y.append(d[1])
 
     # Creamos una figura y le dibujamos el gráfico
     f = plt.figure()
@@ -40,7 +41,7 @@ def moda(request):
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
-    return render(request, "Integracion/moda.html", {'data': data})
+    return render(request, "Integracion/moda.html", {'data': uri})
    # return render(request, "Integracion/moda.html")
 
 def promedio(request):

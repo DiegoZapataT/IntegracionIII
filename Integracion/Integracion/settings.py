@@ -79,9 +79,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'db',
-        'HOST': 'mongodb://admin:jnyF5uDKgvzvqcez@cluster0-shard-00-00.g8lgx.gcp.mongodb.net:27017,cluster0-shard-00-01.g8lgx.gcp.mongodb.net:27017,cluster0-shard-00-02.g8lgx.gcp.mongodb.net:27017/db?ssl=true&replicaSet=atlas-9fz433-shard-0&authSource=admin&retryWrites=true&w=majority',
-        'USER': 'admin',
-        'PASSWORD': 'jnyF5uDKgvzvqcez',
     }
 }
 
