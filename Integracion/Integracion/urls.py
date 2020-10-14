@@ -29,6 +29,7 @@ urlpatterns = [
     path('add_post/', views.add_post),
     path('update_post/<int:id>',views.update_post),
     path('delete_post/<int:id>', views.delete_post),
+    path('getData', views.getData),
     path('read_post/<str:id>', views.read_post),
-    path('read_post_all', views.read_post_all),
+    path('read_post_all', views.read_post_all, name='realdall'),
 ]

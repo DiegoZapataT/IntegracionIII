@@ -1,7 +1,7 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render
-from mongoconnect.models import Posts
+from mongoconnect.models import Posts, Prueba1
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -21,12 +21,30 @@ def delete_post(request, id):
 
 def read_post(request, id):
     post = Posts.objects.get(_id=ObjectId(id))
-    stringval = "Post Title "+ post.post_title +"Comentario de Fernandito : "+ post.comment[0]
+    stringval = "Post Title "+ post.post_title +"Comentario: "+ post.comment[0]
     return HttpResponse(stringval)
 
 def read_post_all(request):
     posts = Posts.objects.all()
     stringval = ""
     for post in posts:
-        stringval += "Post Title "+ post.post_title +"Comentario de Fernandito : "+ post.comment[0]+"<br>"
+        stringval += "<h1> Post Title "+ post.post_title +"Comentario: "+ post.comment[0]+"<br> <h1>"
+    print (stringval)
     return HttpResponse(stringval)
+
+def getData(request):
+    posts = Posts.objects.all()
+    stringval = ""
+    for post in posts:
+        stringval += "<h1> Post Title "+ post.post_title +"Comentario"+ post.comment[0]+"<br> <h1>"
+    stringval += "no"
+    return stringval
+
+def getData1(request):
+    m = ""
+    data = Prueba1.objects.all()
+    for d in data:
+        m += "dia: "+d.dias + " "
+    m += "aaaaaaaaaaaaaaaaa"
+    return m
+

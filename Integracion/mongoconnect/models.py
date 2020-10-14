@@ -8,3 +8,8 @@ class Posts(models.Model):
     tags = models.JSONField()
     objects = models.DjongoManager()
 
+class Prueba1(models.Model):
+    _id = models.ObjectIdField()
+    dias = models.JSONField()
+    casos = models.JSONField()
+    objects = models.DjongoManager()

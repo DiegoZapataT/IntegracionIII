@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 import numpy as np
 import io, urllib, base64
+from mongoconnect.views import getData
 
 def index(request):
     return render(request, "Integracion/index.html")
@@ -17,7 +18,10 @@ def moda(request):
     # Creamos los datos para representar en el gráfico
     ##plt.plot(range(11))
     ##f = plt.gcf()
-
+    x = []
+    y = []
+    data = getData(request)
+    
     x = range(1,11)
     y = sample(range(20), len(x))
 
@@ -36,7 +40,7 @@ def moda(request):
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
-    return render(request, "Integracion/moda.html", {'data': uri})
+    return render(request, "Integracion/moda.html", {'data': data})
    # return render(request, "Integracion/moda.html")
 
 def promedio(request):
