@@ -6,7 +6,6 @@ def index(request):
     return render(request, "Integracion/index.html")
 
 def tutorial(request):
-
     return render(request, "Integracion/tutorial.html")
 
 def moda(request):
@@ -23,3 +22,4 @@ def regresionlineal(request):
 
 def faq(request):
     return render(request, "Integracion/faq.html")
+

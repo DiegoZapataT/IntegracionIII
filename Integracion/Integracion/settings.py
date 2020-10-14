@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Integracion',
+    'mongoconnect',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'db',
-        'HOST': 'mongodb+srv://admin:<jnyF5uDKgvzvqcez>@cluster0.g8lgx.gcp.mongodb.net/<db>?retryWrites=true&w=majority',
+        'HOST': 'mongodb://admin:jnyF5uDKgvzvqcez@cluster0-shard-00-00.g8lgx.gcp.mongodb.net:27017,cluster0-shard-00-01.g8lgx.gcp.mongodb.net:27017,cluster0-shard-00-02.g8lgx.gcp.mongodb.net:27017/db?ssl=true&replicaSet=atlas-9fz433-shard-0&authSource=admin&retryWrites=true&w=majority',
         'USER': 'admin',
         'PASSWORD': 'jnyF5uDKgvzvqcez',
     }

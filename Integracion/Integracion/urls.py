@@ -15,16 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Integracion.views import index, tutorial, moda, promedio, regresionlineal
-from Integracion import views
+from Integracion.views import index, tutorial, moda, promedio, regresionlineal, faq
+from mongoconnect import views
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('tutorial/', views.tutorial),
-    path('moda/', views.moda),
-    path('promedio/', views.promedio),
-    path('regresion/', views.regresionlineal),
-    path('faq/', views.faq),
-    path('', views.index),
-
+    path('tutorial/', tutorial),
+    path('moda/', moda),
+    path('promedio/', promedio),
+    path('regresion/', regresionlineal),
+    path('faq/', faq),
+    path('', index),
+    path('add_post/', views.add_post),
+    path('update_post/<int:id>',views.update_post),
+    path('delete_post/<int:id>', views.delete_post),
+    path('read_post/<str:id>', views.read_post),
+    path('read_post_all', views.read_post_all),
 ]
