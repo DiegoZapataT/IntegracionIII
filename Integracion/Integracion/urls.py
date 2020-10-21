@@ -23,7 +23,7 @@ urlpatterns = [
     path('tutorial/', tutorial),
     path('moda/', moda),
     path('promedio/', promedio),
-    path('regresion/', regresionlineal),
+    path('regresionlineal/', regresionlineal),
     path('faq/', faq),
     path('', index),
     path('add_post/', views.add_post),

@@ -18,6 +18,7 @@ def moda(request):
     # Creamos los datos para representar en el gráfico
     ##plt.plot(range(11))
     ##f = plt.gcf()
+    plt.clf()
     x = []
     y = []
     data = getData(request)
@@ -45,39 +46,48 @@ def moda(request):
    # return render(request, "Integracion/moda.html")
 
 def promedio(request):
-
-    return render(request, "Integracion/promedio.html")
-
-def regresionlineal(request):
+    plt.clf()
+    x = []
+    y = []
+    data = getData(request)
     
-    return render(request, "Integracion/regresionlineal.html")
+    for d in data:
+        x.append(d[0])
+        y.append(d[1])
 
-def faq(request):
-    return render(request, "Integracion/faq.html")
-
-def plot(request):
-    # Creamos los datos para representar en el gráfico
-    x = range(1,11)
-    f = plt.gcf()
+    # Creamos una figura y le dibujamos el gráfico
+    plt.bar(x,y, align="center",alpha=0.5)
+    plt.xticks(x,y)
     # Como enviaremos la imagen en bytes la guardaremos en un buffer
     buf = io.BytesIO()
-    f.savefig(buf, format='png')
+    plt.savefig(buf, format='png')
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
-    return render(request, "Integracion/moda.html", {'data': uri})
+    return render(request, "Integracion/promedio.html", {'data2': uri})
 
-    # canvas = FigureCanvasAgg(f)
-    # canvas.print_png(buf)
+def regresionlineal(request):
+    plt.clf()
+    dias = []
+    casos = []
+    data = getData(request)
+    
+    for d in data:
+        dias.append(d[0])
+        casos.append(d[1])
 
-    # # Creamos la respuesta enviando los bytes en tipo imagen png
-    # response = HttpResponse(buf.getvalue(), content_type='image/png')
+    # Creamos una figura y le dibujamos el gráfico
+    # Creamos los ejes
+    plt.pie(casos, labels=dias, autopct='%1.1f%%', shadow=True, startangle=90)
+    plt.axis("equal")
+    # Como enviaremos la imagen en bytes la guardaremos en un buffer
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
+    return render(request, "Integracion/regresionlineal.html", {'data3': uri})
+   
+def faq(request):
+    return render(request, "Integracion/faq.html")
 
-    # # Limpiamos la figura para liberar memoria
-    # f.clear()
-
-    # # Añadimos la cabecera de longitud de fichero para más estabilidad
-    # response['Content-Length'] = str(len(response.content))
-
-    # # Devolvemos la response
-    # return response
