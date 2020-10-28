@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    {% load bootstrap4 %}
+    {# CSS Bootstrap #}
+    {% bootstrap_css %}      
+  </head>
+  {% bootstrap_javascript jquery='full' %}
+<body bgcolor> 
+  
+  <div style="position:absolute; left:0%; top:0%; width:100%; height:10%; background-color: #607040">
+    <table width="100%">
+      <tr>
+        <td width="15%">
+          <img src="https://www.megaidea.net/wp-content/uploads/2020/03/coronavirus06-150x150.png" width="50" height="
+      50" class="d-inline-block align-top">
+        </td>
+        <td width="60%" align=center>
+          <h3>CARGAR Y GRAFICAR DATOS</h3>
+        </td>
+        <td align=right>
+          <a class="btn btn-primary" href="http://localhost:8000/graf">Cargar CSV</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="position:absolute; left:0%; top:10%; width:100%; height:90%; background-color: #60a050; vertical-align: top">
+    <section class="container mt-0 pt-0" align="center">
+      <img src="data:image/png;base64,{{ data }}" alt="" height="500" ,width="800">
+    </section>
+  </div>  
+      
+    
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

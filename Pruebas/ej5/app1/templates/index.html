@@ -1,0 +1,22 @@
+<head>
+<meta charset="UTF-8">
+<title>Datos del Usuario</title>
+</head>
+<body>
+  {% if submitbutton == "Submit" %}
+  <h1> nombre   {{ nombre   }}</h1>
+  <h1> apellido {{ apellido }}</h1> 
+  <h1> correo   {{ correo   }}</h1>
+  <h1> fono     {{ fono     }}</h1>
+  {% else %}  
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="Submit" name="submit" value="Submit"/>
+  </form>
+  {% endif %}
+</body>
+
+
+</html>
+
