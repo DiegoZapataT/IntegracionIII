@@ -17,8 +17,6 @@ def tutorial(request):
 def moda(request):
     # Creamos los datos para representar en el gráfico
     ##plt.plot(range(11))
-    ##f = plt.gcf()
-    plt.clf()
     x = []
     y = []
     data = getData(request)
@@ -42,11 +40,11 @@ def moda(request):
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
+    f.clear()
     return render(request, "Integracion/moda.html", {'data': uri})
    # return render(request, "Integracion/moda.html")
 
 def promedio(request):
-    plt.clf()
     x = []
     y = []
     data = getData(request)
@@ -56,6 +54,7 @@ def promedio(request):
         y.append(d[1])
 
     # Creamos una figura y le dibujamos el gráfico
+    f = plt.figure()
     plt.bar(x,y, align="center",alpha=0.5)
     plt.xticks(x,y)
     # Como enviaremos la imagen en bytes la guardaremos en un buffer
@@ -64,10 +63,10 @@ def promedio(request):
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
+    f.clear()
     return render(request, "Integracion/promedio.html", {'data2': uri})
 
 def regresionlineal(request):
-    plt.clf()
     dias = []
     casos = []
     data = getData(request)
@@ -77,6 +76,7 @@ def regresionlineal(request):
         casos.append(d[1])
 
     # Creamos una figura y le dibujamos el gráfico
+    f = plt.figure()
     # Creamos los ejes
     plt.pie(casos, labels=dias, autopct='%1.1f%%', shadow=True, startangle=90)
     plt.axis("equal")
@@ -86,6 +86,7 @@ def regresionlineal(request):
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
+    f.clear()
     return render(request, "Integracion/regresionlineal.html", {'data3': uri})
    
 def faq(request):
