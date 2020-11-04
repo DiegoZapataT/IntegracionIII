@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Integracion.views import index, tutorial, moda, promedio, regresionlineal, faq
+from Integracion.views import index, tutorial, moda, promedio, regresionlineal, faq, correlacional
 from mongoconnect import views
 
 urlpatterns = [
@@ -23,6 +23,7 @@ urlpatterns = [
     path('tutorial/', tutorial),
     path('moda/', moda),
     path('promedio/', promedio),
+    path('correlacional/', correlacional),
     path('regresionlineal/', regresionlineal),
     path('faq/', faq),
     path('', index),
