@@ -19,7 +19,6 @@ def correlacional(request):
 
 def moda(request):
     # Creamos los datos para representar en el gráfico
-
     x = []
     y = []
     data = getData(request)
@@ -43,16 +42,55 @@ def moda(request):
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
-    return render(request, "Integracion/moda.html", {'data': uri})
+    f.clear()
+    return render(request, "Integracion/g_moda.html", {'data': uri})
    # return render(request, "Integracion/moda.html")
 
 def promedio(request):
+    x = []
+    y = []
+    data = getData(request)
 
-    return render(request, "Integracion/promedio.html")
+    for d in data:
+        x.append(d[0])
+        y.append(d[1])
+
+    # Creamos una figura y le dibujamos el gráfico
+    f = plt.figure()
+    plt.bar(x, y, align="center", alpha=0.5)
+    plt.xticks(x, y)
+    # Como enviaremos la imagen en bytes la guardaremos en un buffer
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
+    f.clear()
+    return render(request, "Integracion/g_promedio.html", {'data2': uri})
 
 def regresionlineal(request):
-    
-    return render(request, "Integracion/regresionlineal.html")
+    dias = []
+    casos = []
+    data = getData(request)
+
+    for d in data:
+        dias.append(d[0])
+        casos.append(d[1])
+
+    # Creamos una figura y le dibujamos el gráfico
+    f = plt.figure()
+    # Creamos los ejes
+    plt.pie(casos, labels=dias, autopct='%1.1f%%', shadow=True, startangle=90)
+    plt.axis("equal")
+    # Como enviaremos la imagen en bytes la guardaremos en un buffer
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
+    f.clear()
+    return render(request, "Integracion/g_regresionlineal.html", {'data3': uri})
+
 
 def faq(request):
     return render(request, "Integracion/faq.html")
@@ -67,7 +105,8 @@ def plot(request):
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
-    return render(request, "Integracion/moda.html", {'data': uri})
+    f.clear()
+    return render(request, "Integracion/g_moda.html", {'data': uri})
 
     # canvas = FigureCanvasAgg(f)
     # canvas.print_png(buf)
