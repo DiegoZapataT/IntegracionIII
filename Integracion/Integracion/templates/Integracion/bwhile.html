@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Plataforma DataScience - Inicio</title>
+  {% include 'scripts.html' %}
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    {% include 'sidebar.html' %}
+
+
+      <section class="pricing py-5">
+        <div>
+            <h1>Bucle while</h1>
+            <hr class="docutils">
+            <p>En Python existe una palabra reservada la cual nos ayudara a generar
+              bucles, esta se llama <b>while</b>, nos permite ejecutar ciclos, o bien 
+              secuencias periódicas que nos permiten ejecutar código múltiples veces.
+              <br><br>
+              El ciclo <b>while</b> nos permite realizar multiples iteraciones basándonos
+              en el resultado de una expresión lógica que puede tener como resultado un valor
+              True o False.
+            </p>
+            <h2>Tipos de bucles while</h2>
+            <p>Pueden existir variados tipos de ciclos while que se definen por 
+              su forma de estructurarse o bien por su forma de finalizar.
+            </p>
+            <h3>I.- Bucle while controlado por Conteo</h3>
+            <p>Es un bucle while que se controla mediante un contador en este caso llamado numero:</p>
+            <div class="highlight-python"><div class="highlight"><pre>
+              <span class="n">suma</span><span class="p">,</span> <span class="n">numero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+              <span class="k">while</span> <span class="n">numero</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+                  <span class="n">suma</span> <span class="o">=</span> <span class="n">numero</span> <span class="o">+</span> <span class="n">suma</span>
+                  <span class="n">numero</span> <span class="o">=</span> <span class="n">numero</span> <span class="o">+</span> <span class="mi">1</span>
+              <span class="k">print</span> <span class="s">&quot;La suma es &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">suma</span><span class="p">)</span>
+              </pre></div>
+            </div>
+            <p>En este ejemplo tiene un contador con valor inicial 0, cada iteración o vuelta del while
+              manipula esta variable de manera que su valor incremente en 1, por lo que luego de su primera
+              iteración el contador tendra un valor de 1, luego 2, y asi sucesivamente.
+              <br><br>
+              Eventualmente cuando el contador llegue a tener un valor de 10, la condicion del ciclo
+              numero <= 10 sera False, por lo que el ciclo terminará arrojando el siguiente resultado.
+            </p>
+            <h3>II.- Bucle while controlado por Evento</h3>
+            <p>Este bucle while tiene este nombre ya que terminara cuando un evento que estara dentro
+              del mismo tenga un determinado resultado, un ejemplo de uso de este ciclo while es con la 
+              libreria pygame ya que al crear una ventan se requiere un ciclo while True, que luego de 
+              que se cierre o se produzca algo se ejecutara la instruccion break para que se rompa el ciclo.
+            </p>
+            <div class="highlight-python"><div class="highlight"><pre>
+              <span class="n">promedio</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="n">contar</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+              <span class="k">print</span> <span class="s">&quot;Introduzca la nota de un estudiante (-1 para salir): &quot;</span>
+              <span class="n">grado</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>	
+              <span class="k">while</span> <span class="n">grado</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                  <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">grado</span>
+                  <span class="n">contar</span> <span class="o">=</span> <span class="n">contar</span> <span class="o">+</span> <span class="mi">1</span>
+                  <span class="k">print</span> <span class="s">&quot;Introduzca la nota de un estudiante (-1 para salir): &quot;</span>
+                  <span class="n">grado</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>
+              <span class="n">promedio</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="n">contar</span>
+              <span class="k">print</span> <span class="s">&quot;Promedio de notas del grado escolar es: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">promedio</span><span class="p">)</span>
+              </pre></div>
+            </div>
+            <p>En este el evento que se dispara cuando el usuario ingresa el valor -1, causara que el 
+              bucle while se interrumpa o no se inicie.
+            </p>
+            <h3>III.- Bucle while con else</h3>
+            <p>Al igual que la sentencia if, la estructura while tambien puede combinarse con una sentencia else
+              <br><br>
+              El nombre de la sentencia else es equivocada, ya que el bloque else se ejecutara 
+              en todos los casos, es decir, cuando la expresion condicional del while sea False.
+            </p>
+            <div class="highlight-python"><div class="highlight"><pre>
+              <span class="n">promedio</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="n">contar</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+              <span class="n">mensaje</span> <span class="o">=</span> <span class="s">&quot;Introduzca la nota de un estudiante (-1 para salir): &quot;</span>
+              
+              <span class="n">grado</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="n">mensaje</span><span class="p">))</span>
+              <span class="k">while</span> <span class="n">grado</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                  <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">grado</span>
+                  <span class="n">contar</span> <span class="o">+=</span> <span class="mi">1</span>
+                  <span class="n">grado</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="n">mensaje</span><span class="p">))</span>
+              <span class="k">else</span><span class="p">:</span>
+                  <span class="n">promedio</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="n">contar</span>
+                  <span class="k">print</span> <span class="s">&quot;Promedio de notas del grado escolar: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">promedio</span><span class="p">)</span>
+              </pre></div>
+            </div>
+            <p>La sentencia else tiene la ventaja de mantener el mismo nombre y la 
+              misma sintaxis que en las demás estructuras de control.
+            </p>
+            <h2>Sentencias utilitarias</h2>
+            <p>Son sentencias que nos ayudaran de una u otra manera a terminar el ciclo
+              while
+            </p>
+            <h3>I.- Sentencia break</h3>
+            <p>El ciclo terminara mediante una interrupcion dentro del mismo mediante un break, aunque
+              la condicion de finalizacion del mismo aun no se haya cumplido:
+            </p>
+            <div class="highlight-python"><div class="highlight"><pre>
+              <span class="n">variable</span> <span class="o">=</span> <span class="mi">10</span>
+
+              <span class="k">while</span> <span class="n">variable</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                  <span class="k">print</span> <span class="s">&#39;Actual valor de variable:&#39;</span><span class="p">,</span> <span class="n">variable</span>
+                  <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span> <span class="o">-</span><span class="mi">1</span>
+                  <span class="k">if</span> <span class="n">variable</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                      <span class="k">break</span>
+              </pre></div>
+            </div>
+            <h3>II.- Sentencia continue</h3>
+            <p>La sentencia <b>continue</b> hae que pase de nuevo al principio del bucle aunque
+              no se haya terminado de ejecutar el ciclo anterior (Reinicia el ciclo al punto de inicio).
+            </p>
+            <div class="highlight-python"><div class="highlight"><pre>
+              <span class="n">variable</span> <span class="o">=</span> <span class="mi">10</span>
+
+              <span class="k">while</span> <span class="n">variable</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>              
+                 <span class="n">variable</span> <span class="o">=</span> <span class="n">variable</span> <span class="o">-</span><span class="mi">1</span>
+                 <span class="k">if</span> <span class="n">variable</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                 <span class="k">print</span> <span class="s">&#39;Actual valor de variable:&#39;</span><span class="p">,</span> <span class="n">variable</span>
+              </pre></div>
+            </div>
+            <h2>Ejemplo</h2>
+            <h3>Sucesion de Fibonacci</h3>
+            <p>Mediante el uso de un ciclo while se puede ejecutar y obtener todos los numeros
+              de la sucesion de fibonacci desde el 0 al 100:
+            </p>
+            <div class="highlight-python"><div class="highlight"><pre>
+              <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+              <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+                  <span class="k">print</span> <span class="n">b</span><span class="p">,</span>
+                  <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+              </pre></div>
+            </div>
+        </div>
+      </section>
+
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Selecciona "salir", si deseas cerrar la sesion.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="login.html">Salir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

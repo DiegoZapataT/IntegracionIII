@@ -15,12 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Integracion.views import index, tutorial, moda, promedio, regresionlineal, faq, correlacional
+from Integracion.views import index, tutorial, moda, promedio, regresionlineal, faq, correlacional,listas, tupla, logicos, condicional, bwhile, bfor
 from mongoconnect import views
 
 urlpatterns = [
     path('admin', admin.site.urls),
     path('tutorial/', tutorial),
+    path('bfor/', bfor),
+    path('listas/', listas),
+    path('tuplas/', tupla),
+    path('logicos/', logicos),
+    path('condicional/', condicional),
+    path('bwhile/', bwhile),
     path('moda/', moda),
     path('promedio/', promedio),
     path('correlacional/', correlacional),

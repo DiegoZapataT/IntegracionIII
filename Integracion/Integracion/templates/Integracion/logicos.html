@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Plataforma DataScience - Inicio</title>
+  {% include 'scripts.html' %}
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    {% include 'sidebar.html' %}
+
+
+      <section class="pricing py-5">
+        <div>
+            <h1>Operadores Logicos</h1>
+            <hr class="docutils">
+            <p>Estos son los operadores con los que se puede trebajar con valores booleanos
+                que se usen durante nuestro codigo de programacion
+            </p>
+            <h3><b>Operador and</b></h3>
+            <p>El operador <b>and</b> evalua si el valor del lado izquierdo y del lado derecho se cumple:</p>
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                        <span class="gp">&gt;&gt;&gt; </span><span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span>
+                        <span class="go">False</span>
+                    </pre>
+                </div>
+            </div>
+            <h3><b>Operador or</b></h3>
+            <p>El operador <b>or</b> evalua si el valor del lado izquierdo o del lado derecho se cumplen:</p>
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                        <span class="gp">&gt;&gt;&gt; </span><span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span>
+                        <span class="go">True</span>
+                    </pre>
+                </div>
+            </div>
+            <h3><b>Operador not</b></h3>
+            <p>El operador <b>not</b> devuelve el valor opuesto al valor booleano:</p>
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                        <span class="gp">&gt;&gt;&gt; </span><span class="ow">not</span> <span class="bp">True</span>
+                        <span class="go">False</span>
+                    </pre>
+                </div>
+            </div>
+            <p>Si la expresion es <b>True</b> el valor devuelto es <b>False</b>, de lo contrario 
+            si la expresion es <b>False</b> el valor devuelto sera <b>True</b>.
+            </p>
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                        <span class="gp">&gt;&gt;&gt; </span><span class="ow">not</span> <span class="bp">False</span>
+                        <span class="go">True</span>
+                    </pre>
+                </div>
+            </div>
+            <h3><b>Ejemplos</b></h3>
+            <p>A continuacion mostrare algunos ejemplos de operadores logicos:</p>
+            <p><b>Lo primero que realizamos es definir las variables a usar en los ejemplos:</b></p>
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span>
+                    </pre>
+                </div>
+            </div>
+            <p><b>Ejemplo para operador logico and:</b></p> 
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="ow">and</span> <span class="n">b</span><span class="p">):</span>
+                        <span class="k">print</span> <span class="s">&quot;Las variables &#39;a&#39; y &#39;b&#39; son VERDADERO.&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&quot;O bien la variable &#39;a&#39; no es VERDADERO &quot;</span> <span class="o">+</span> \
+                        <span class="s">&quot;o la variable &#39;b&#39; no es VERDADERO.&quot;</span>
+                    </pre>
+                </div>
+            </div>
+            <p><b>Ejemplo de operador logico or:</b></p>  
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="ow">or</span> <span class="n">b</span><span class="p">):</span>
+                        <span class="k">print</span> <span class="s">&quot;O bien la variable &#39;a&#39; es VERDADERA &quot;</span> <span class="o">+</span> \
+                        <span class="s">&quot;o la variable &#39;b&#39; es VERDADERA &quot;</span> <span class="o">+</span> \
+                        <span class="s">&quot;o ambas variables son VERDADERAS.&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&quot;Ni la variable &#39;a&#39; es VERDADERA ni &quot;</span> <span class="o">+</span> \
+                        <span class="s">&quot;la variable &#39;b&#39; es VERDADERA.&quot;</span>
+                    </pre>
+                </div>
+            </div>
+            <p><b>Ejemplo de operador logico not:</b></p>
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">a</span> <span class="ow">and</span> <span class="n">b</span><span class="p">):</span>
+                        <span class="k">print</span> <span class="s">&quot;Ni la variable &#39;a&#39; NO es VERDADERA &quot;</span> <span class="o">+</span> \
+                        <span class="s">&quot;o la variable &#39;b&#39; NO es VERDADERA.&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&quot;Las variables &#39;a&#39; y &#39;b&#39; son VERDADERAS.&quot;</span>
+                    </pre>
+                </div>
+            </div>
+
+            
+        </div>
+      </section>
+
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Selecciona "salir", si deseas cerrar la sesion.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="login.html">Salir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

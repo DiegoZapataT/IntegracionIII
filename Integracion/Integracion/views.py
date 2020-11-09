@@ -14,6 +14,23 @@ def index(request):
 def tutorial(request):
     return render(request, "Integracion/tutorial.html")
 
+def bfor(request):
+    return render(request, "Integracion/bfor.html")
+def bwhile(request):
+    return render(request, "Integracion/bwhile.html")
+
+def condicional(request):
+    return render(request, "Integracion/condicional.html")
+
+def listas(request):
+    return render(request, "Integracion/listas.html")
+
+def logicos(request):
+    return render(request, "Integracion/logicos.html")
+
+def tupla(request):
+    return render(request, "Integracion/tuplas.html")
+
 def correlacional(request):
     return render(request, "Integracion/correlacional.html")
 

@@ -23,7 +23,213 @@
 
       <section class="pricing py-5">
         <div>
-            <h1>Tutorial Python</h1>
+            <h1><b>Tutorial Python</b></h1>
+            <hr class="docutils">
+            <p>Contenidos para profundizar aun mas:</p>
+            <li><a href="/listas/">Tutorial listas</a></li>
+            <li><a href="/tuplas/">Tutorial tuplas</a></li>
+            <li><a href="/logicos/">Operadores logicos</a></li>
+            <li><a href="/condicional/">Condicional if</a></li>
+            <li><a href="/bwhile/">Bucle while</a></li>
+            <li><a href="/bfor/">Bucle for</a></li>
+            <hr class="docutils">
+            <h2>¿Que es python?</h2>
+            <p>Si estas aqui te debe interesar el mundo de la programacion y deseas introducirte en este mundo
+              este tutorial te servira a modo de introduccion explicandote los tipos de datos que existen en python,
+              las operaciones logicas, conectores, listas y como recorrerlas, sera un tutorial basico pero que ademas si quieres
+              aprender mas por tu parte te adjuntare videos de distintos tutoriales que te ayudaran a aprender mas, por ejemplo,
+              aprender funciones, POO, etc. Ademas de adjuntarte tanto fragmento de codigos
+              explicativos en fotos para que entiendas de una mejor manera el trabajar con este Lenguaje.
+              <br>Python es un lenguaje de programacion de proposito general muy potente y flexible, a la vez es sencillo y facil de aprender.
+              Es un lenguaje de alto nivel, que permite procesar facilmente todo tipo de estructuras de datos, tanto numericos como de texto.
+              Es tan completo para todo ambito de la programacion, teniendo librerias para el trabajo cientifico, hasta para crear videojuegos, siendo
+              uno de los lenguajes de programacion mas completo que existe actualmente.
+            </p>
+            <h1>Tipos de datos</h1>
+            <p>Para comenzar este tutorial debemos aprender los tipos de datos que podemos encontrar en python, estos encerrados en 6 categorias distintas
+              las cuales pueden ser <b>mutable</b>(su contenido o valor pueden cambiar en tiempo de ejecucion)
+              <b>inmutable</b>(su contenido o valor no pueden cambiar en tiempo de ejecucion):
+            </p>
+            <ol>
+              <li>Numeros inmutables:</li>
+              <ol type="I">
+                <li>int: Entero</li>
+                <li>long: Entero Long</li>
+                <li>float: decimal</li>
+                <li>complex: complejo</li>
+                <li>bool: booleano</li>
+              </ol>
+              <li>Secuencias inmutables:</li>
+              <ol type="I">
+                <li>str: cadena de caracteres</li>
+                <li>unicode: cadena de caracteres Unicode</li>
+                <li>tuple: tupla</li>
+                <li>xrange: rango inmutable</li>
+              </ol>
+              <li>Secuencias mutables:</li>
+              <ol type="I">
+                <li>list: lista</li>
+                <li>range: rango mutable</li>
+              </ol>
+              <li>Mapeos:</li>
+              <ol type="I">
+                <li>dict: diccionario</li>
+              </ol>
+              <li>Conjuntos Mutables:</li>
+              <ol type="I">
+                <li>set: conjunto mutable</li>
+              </ol>
+              <li>Conjuntos inmutables:</li>
+              <ol type="I">
+                <li>frozenset: conjunto inmutable</li>
+              </ol>
+            </ol>
+            <ol>
+              <li>Otros tipos de datos incorporados son los siguientes:</li>
+              <ol type="I">
+                <li>NoneType: objeto none</li>
+                <li>NotImplementedType: objeto no implementado</li>
+                <li>ellipsis: Objeto Ellipsis</li>
+                <li>file: objeto archivo/file</li>
+              </ol>
+            </ol>
+            <hr class="docutils">
+            <h1>Variables y constantes</h1>
+            <h3>I.- Variables</h3>
+            <p>Es un nombre que se refiere a un objeto que reside en la memoria. El objeto 
+              puede ser de alguno de los tipos vistos mas arriba (numero o cadena de texto),
+              o alguno de los otros tipos existentes en python.
+              <br>
+              <br>Cada variable debe tener un nombre unico llamado identificador. Eso es muy de 
+              pensar las variables como contenedores que tienen la data el cual puede ser cambiado 
+              despues a través de un proceso de programacion
+            </p>
+            <h3>II.- Alcance de variables</h3>
+            <p>Las variables en Python son locales por defecto. Esto quiere decir que las variables definidas
+              y utilizadas en el codigo de una funcion, solo viven y tienen existencia dentro de esta, y a su vez no 
+              interfieren con otras variables del resto del codigo.
+            </p>
+            <h3>Ejemplos de variables:</h3>
+            <p>A continuación veremos ejemplos de uso de variables:</p>
+
+            <h4><b>Ejemplo de asignacion de valor a una variable</b></h4>
+            <p>A continuacion, se creara un par de variables como ejemplos. Una de tipo str (Cadena de caracteres) y una de tipo int (entero):</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre>
+                  <span class="gp">&gt;&gt;&gt;</span>
+                  <span class="n">c</span><span class="o">=</span><span class="s">&quot;Hola Mundo&quot;</span>
+                  <span class="c"># cadenas de caracteres</span>
+                  <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c"># comprobar tipo de dato</span>
+                  <span class="go">&lt;type &#39;str&#39;&gt;</span>
+                  <span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="mi">23</span> <span class="c"># número entero</span>
+                  <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="c"># comprobar tipo de dato</span>
+                  <span class="go">&lt;type &#39;int&#39;&gt;</span>
+                </pre>
+              </div>
+            </div>
+            <p>Como podemos observar arriba, la asignacion de variables en python 
+              es mucho mas comoda y amigable, ya que por ejemplo, en java se debe 
+              anteponer el tipo de dato que la variable contendra:
+            </p>
+            <div class="highlight-java">
+              <div class="highlight">
+                <pre>
+                  <span class="n">String</span> <span class="n">c</span> <span class="o">=</span> <span class="s">&quot;Hola Mundo&quot;</span><span class="o">;</span>
+                  <span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">23</span><span class="o">;</span>
+                </pre>
+              </div>
+            </div>
+            <p>Para que no existe confusion, lo que se encuentra escrito despues de un # pertenece a un comentario, fragmentos de codigo
+              que el programa no tomara en cuenta, los cuales nos sirven para darle entendimiento a lo que hace nuestro codigo.
+            </p>
+            <hr class="docutils">
+            <h4><b>Ejemplo de asignar múltiples valores a múltiples variables</b></h4>
+            <p>A continuacion, se creará multiples variables (int, float, str) asignando multiples valores:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre>
+                  <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="s">&quot;Hola&quot;</span>
+                  <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
+                  <span class="go">5</span>
+                  <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span>
+                  <span class="go">3.2</span>
+                  <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">c</span>
+                  <span class="go">&#39;Hola&#39;</span>
+                </pre>
+              </div>
+            </div>
+            <hr class="docutils">
+            <h3>III.- Constantes</h3>
+            <p>Una constante es un tipo de variable en python que no puede o no debe ser cambiada. 
+              Eso es muy de ayuda pensar las constantes como contenedores que contienen informacion la 
+              cual no puede ser cambiada despues.
+              <br><br>
+              En Python, las constantes son usualmente declaradas y asignadas en un modulo.
+            </p>
+            <h3><b>Ejemplo de constantes desde un modulo externo:</b></h3>
+            <p>Creamos un archivo llamado constantes.py con el contenido siguiente:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre>
+                  <span class="n">IP_DB_SERVER</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1&quot;</span>
+                  <span class="n">PORT_DB_SERVER</span> <span class="o">=</span> <span class="mi">3307</span>
+                  <span class="n">USER_DB_SERVER</span> <span class="o">=</span> <span class="s">&quot;root&quot;</span>
+                  <span class="n">PASSWORD_DB_SERVER</span> <span class="o">=</span> <span class="s">&quot;123456&quot;</span>
+                  <span class="n">DB_NAME</span> <span class="o">=</span> <span class="s">&quot;nomina&quot;</span>
+                </pre>
+              </div>
+            </div>
+            <p>Crear un archivo llamado main.py con el siguiente contenido:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre>
+                  <span class="kn">import</span> <span class="nn">constantes</span>
+                  <span class="k">print</span> <span class="s">&quot;scp -v -P {0} {1}@{2}:/{3}/{4}/{4}.sql /srv/backup&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                  <span class="nb">str</span><span class="p">(</span><span class="n">constantes</span><span class="o">.</span><span class="n">PORT_DB_SERVER</span><span class="p">),</span> <span class="n">constantes</span><span class="o">.</span><span class="n">USER_DB_SERVER</span><span class="p">,</span> 
+                  <span class="n">constantes</span><span class="o">.</span><span class="n">IP_DB_SERVER</span><span class="p">,</span> <span class="n">constantes</span><span class="o">.</span><span class="n">USER_DB_SERVER</span><span class="p">,</span>
+                  <span class="n">constantes</span><span class="o">.</span><span class="n">DB_NAME</span><span class="p">)</span>
+                </pre>
+              </div>
+            </div>
+            <p>Luego ejecuta el programa escribiendo en el cmd dentro de la carpeta del programa <b>python main.py</b>
+              deberiamos tener la siguiente salida:
+            </p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre>scp -v -P 3307 root@127.0.0.1:/root/webapp/db.sql /srv/backup</pre>
+              </div>
+            </div>
+            <hr class="docutils">
+            <h3>IV.- Operadores</h3>
+            <p>En Python existen operadores los cuales nos ayudaran a realizar distintas operaciones aritmetica/logicas, los operadores
+              que mas usaremos durante la programacion son los siguientes: </p>
+            <ol>
+              <li>Operadores Aritmeticos:</li>
+              <ol type="I">
+                <li>Operador de suma "+", el cual nos servira para sumar datos numericos o concatenar strings</li>
+                <li>Operador de resta "-", el cual nos servira para restar valores numericos</li>
+                <li>Operador de negacion "-x", el cual nos servira para asignar valor negativo a un numero x</li>
+                <li>Operador de multiplicacion "*", el cual nos servira para multiplicar sumar dos o mas numeros</li>
+                <li>Operador de exponente "**", el cual nos servira para trabar con potencias para asignar un exponente a un numero</li>
+                <li>Operador de division "/", el cual nos servira para realizar la division de valores numericos con resultado entero o decimal</li>
+                <li>Operador de division entera "//", el cual realiza la misma operacion que el anterior pero solo entrega resultados enteros,
+                  si nuestro resultado es 1,75 nos dara como resultado un 1.0
+                </li>
+              </ol>
+              <li>Operadores Relacionales:</li>
+              <ol type="I">
+                <li>Operador ==: Evaluara que los valores sean iguales para varios tipos de datos. 
+                  <br>Por Ejemplo: a == b si ambos son un 1 nos devolvara True, caso contrario si fueran un 1 y un 2
+                  nos devolvera False.
+                </li>
+                <li>Operador !=: Evaluara que los valores sean distintos, todo lo contrario al nombrado anteriormente.</li>
+                <li>Operador <: Evaluara si el valor del lado izquierdo es menor que el valor del lado derecho.</li>
+                <li>Operador >: Evaluara si el valor del lado izquierdo es mayor que el valor del lado derecho.</li>
+                <li>Operador <=: Evaluara si el valor del lado izquierdo es menor o igual que el valor del lado derecho.</li>
+                <li>Operador >=: Evaluara si el valor del lado izquierdo es mayor o igual que el valor del lado derecho.</li>
+              </ol>
+            </ol>
         </div>
       </section>
 

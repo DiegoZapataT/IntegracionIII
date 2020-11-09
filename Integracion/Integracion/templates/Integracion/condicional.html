@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Plataforma DataScience - Inicio</title>
+  {% include 'scripts.html' %}
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    {% include 'sidebar.html' %}
+
+
+      <section class="pricing py-5">
+        <div>
+            <h1>Condicional if</h1>
+            <hr class="docutils">
+            <p> La sentencia condicional <b>if</b> se usa para tomar decisiones, este evaluá básicamente una
+                operación lógica, es decir una expresion que de como resultado True o False, y ejecuta la 
+                pieza de codigo siguiente siempre y cuando el resultado sea verdadero
+                <br><br>
+                A continuación te mostrare una estructura condicional if/elif/else completa como ejemplo:
+            </p>
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+                    <span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Ingresa un número entero, por favor: &quot;</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="n">numero</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">numero</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="k">print</span> <span class="s">&#39;El número ingresado es negativo cambiado a cero.</span><span class="se">\n</span><span class="s">&#39;</span>
+                    <span class="k">elif</span> <span class="n">numero</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&#39;El número ingresado es 0.</span><span class="se">\n</span><span class="s">&#39;</span>
+                    <span class="k">elif</span> <span class="n">numero</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&#39;El número ingresado es 1.</span><span class="se">\n</span><span class="s">&#39;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&#39;El número ingresado es mayor que uno.</span><span class="se">\n</span><span class="s">&#39;</span>
+                    </pre>
+                </div>
+            </div>
+            <p>En el ejemplo que puedes observar arriba ademas he incluido dos funciones que vienen integradas 
+                en el interprete de python, int() la cual convierte el valor ingresado a un número entero y raw_input(),
+                la cual lee el valor ingresado por la entrada de teclado.
+            </p>
+            <h3><b>Sentencia if</b></h3>
+            <p>La sentencia if EXPRESION, significa, si se cumple la <strong>expresion condicional</strong> se ejecuta el bloque
+                de sentencias seguidas.
+            </p>
+            <h3><b>Sentencia elif</b></h3>
+            <p>La sentencia elif EXPRESION, significa, <b>De lo contrario Si</b> se cumple la <strong>expresion condicional</strong>
+                se ejecuta el bloque de sentencias seguidas, es decir si no se cumple la sentencia if y hay un elif despues, se 
+                comprobara con la expresion a evaluar del elif.
+            </p>
+            <h3><b>Sentencia else</b></h3>
+            <p>La sentencia else, significa, <b>De lo contrario</b> se cumple sin evaluar ninguna <strong>expresion condicional</strong> y 
+                ejecuta el bloque de sentencias seguidas.
+            </p>
+            <h3>Ejemplos</h3>
+            <p>A continuacion te presentare distintos ejemplos para que entiendas de manera
+                mas facil el funcionamiento de las condicionales if/elif/else.
+            </p>
+            <h3><b>Definimos variables a trabajar:</b></h3>
+            <div class="highlight-python">
+                <div class="highlight">
+                    <pre>
+            <span class="n">dato1</span><span class="p">,</span> <span class="n">dato2</span><span class="p">,</span> <span class="n">dato3</span><span class="p">,</span> <span class="n">dato4</span> <span class="o">=</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">;</span>
+                    </pre>
+                </div>
+            </div>
+            <h3><b>Ejemplo de operador if con comparador Igual: </b></h3>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dato1</span> <span class="o">==</span> <span class="n">dato2</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; y &#39;dato2&#39; son iguales.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; y &#39;dato2&#39; no son iguales.&quot;</span>
+            </pre></div>
+            </div>
+            <h3><b>Ejemplo de operador if con comparador Distinto:</b></h3>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dato1</span> <span class="o">!=</span> <span class="n">dato2</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; y &#39;dato2&#39; son distintas.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; y &#39;dato2&#39; no son distintas.&quot;</span>
+            </pre></div>
+            </div>
+            <h3><b>Ejemplo de operador if con comparador Diferente:</b></h3>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dato1</span> <span class="o">&lt;&gt;</span> <span class="n">dato2</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; y &#39;dato2&#39; son diferentes.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; y &#39;dato2&#39; no son diferentes.&quot;</span>
+            </pre></div>
+            </div>
+            <h3><b>Ejemplo de operador if con comparador Menor que:</b></h3>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dato1</span> <span class="o">&lt;</span> <span class="n">dato2</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; es menor que &#39;dato2&#39;.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; no es menor que &#39;dato2&#39;.&quot;</span>
+            </pre></div>
+            </div>
+            <h3><b>Ejemplo de operador if con comparador Mayor que:</b></h3>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dato1</span> <span class="o">&gt;</span> <span class="n">dato2</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; es mayor que &#39;dato2&#39;.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato1&#39; no es mayor que &#39;dato2&#39;.&quot;</span>
+            </pre></div>
+            </div>
+            <h3><b>Ejemplo de operador if con comparador Menor o igual que:</b></h3>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dato3</span> <span class="o">&lt;=</span> <span class="n">dato4</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato3&#39; es menor o igual que &#39;dato4&#39;.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato3&#39; no es menor o igual que &#39;dato4&#39;.&quot;</span>
+            </pre></div>
+            </div>
+            <h3><b>Ejemplo de operador if con comparador Mayor o igual que:</b></h3>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dato4</span> <span class="o">&gt;=</span> <span class="n">dato3</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato4&#39; es mayor o igual que &#39;dato3&#39;.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;&#39;dato4&#39; no es mayor o igual que &#39;dato3&#39;.&quot;</span>
+            </pre></div>
+            </div>
+            
+        </div>
+      </section>
+
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Selecciona "salir", si deseas cerrar la sesion.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="login.html">Salir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

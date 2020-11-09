@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Plataforma DataScience - Inicio</title>
+  {% include 'scripts.html' %}
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    {% include 'sidebar.html' %}
+
+
+      <section class="pricing py-5">
+        <div>
+            <h1>Bucle for</h1>
+            <hr class="docutils">
+            <p>La sentencia for en Python difiere un poco de lo que uno puede estar acostumbrado, 
+                la sentencia for de python itera sobre los items de cualquier secuencia (generalmente una lista
+                o una cadena de caracteres), en el orden que aparecen en la secuencia.
+            </p>
+            <h2>Tipos de Bucle for</h2>
+            <p>Al igual que con el ciclo while, el ciclo for tiene variados tipos que,
+                si bien son iguales, tienen unas pequeñas diferencias entre si
+            </p>
+            <h3>I.- Bucle for con Listas </h3>
+            <p>El bucle for generalmente se usa para iterar listas, como podemos ver mas abajo:</p>
+            <div class="highlight-python"><div class="highlight"><pre>
+                <span class="n">animales</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;gato&#39;</span><span class="p">,</span> <span class="s">&#39;perro&#39;</span><span class="p">,</span> <span class="s">&#39;serpiente&#39;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">animales</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&quot;El animal es: {0}, tamaño de palabra es: {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">animal</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">animal</span><span class="p">))</span>
+                </pre></div>
+            </div>
+            <h3>II.- Bucle for con Listas y funcion range</h3>
+            <p>El siguiente ejemplo nos muestra un for en que se usa la funcion
+                range() la cual nos sirve para dar un valor final hasta el cual se quiera 
+                iterar.
+            </p>
+            <div class="highlight-python"><div class="highlight"><pre>
+                <span class="n">oracion</span> <span class="o">=</span> <span class="s">&#39;Mary entiende muy bien Python&#39;</span>
+                <span class="n">frases</span> <span class="o">=</span> <span class="n">oracion</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="c"># convierte a una lista cada palabra</span>
+                <span class="k">print</span> <span class="s">&quot;La oración analizada es:&quot;</span><span class="p">,</span> <span class="n">oracion</span><span class="p">,</span> <span class="s">&quot;.</span><span class="se">\n</span><span class="s">&quot;</span>
+                <span class="k">for</span> <span class="n">palabra</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frases</span><span class="p">)):</span>
+                    <span class="k">print</span> <span class="s">&quot;Palabra: {0}, en la frase su posición es: {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">frases</span><span class="p">[</span><span class="n">palabra</span><span class="p">],</span> <span class="n">palabra</span><span class="p">)</span>
+                </pre></div>
+            </div>
+            <p>Si se necesita iterar sobre una secuencia de números. Genera una lista conteniendo
+                progresiones aritméticas, por ejemplo, como se hace en el fragmento que podemos observar
+                arriba.
+            </p>
+            <h3>III.- Bucle for con Tuplas:</h3>
+            <p>Itera de la misma manera de como lo hace sobre una lista o un string:</p>
+            <div class="highlight-python"><div class="highlight"><pre>
+                <span class="n">conexion_bd</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="s">&quot;root&quot;</span><span class="p">,</span><span class="s">&quot;123456&quot;</span><span class="p">,</span><span class="s">&quot;nomina&quot;</span>
+                <span class="k">for</span> <span class="n">parametro</span> <span class="ow">in</span> <span class="n">conexion_bd</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="n">parametro</span>
+                </pre></div>
+            </div>
+            <h3>IV.- Bucle for con Diccionarios:</h3>
+            <p>Un bucle for puede tambien iterar en una coleccion estructurada como clave+valor, de manera que se 
+                pueden obtener los valores que el diccionario contenga:
+            </p>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="n">datos_basicos</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s">&quot;nombres&quot;</span><span class="p">:</span><span class="s">&quot;Leonardo Jose&quot;</span><span class="p">,</span>
+                <span class="s">&quot;apellidos&quot;</span><span class="p">:</span><span class="s">&quot;Caballero Garcia&quot;</span><span class="p">,</span>
+                <span class="s">&quot;cedula&quot;</span><span class="p">:</span><span class="s">&quot;26938401&quot;</span><span class="p">,</span>
+                <span class="s">&quot;fecha_nacimiento&quot;</span><span class="p">:</span><span class="s">&quot;03/12/1980&quot;</span><span class="p">,</span>
+                <span class="s">&quot;lugar_nacimiento&quot;</span><span class="p">:</span><span class="s">&quot;Maracaibo, Zulia, Venezuela&quot;</span><span class="p">,</span>
+                <span class="s">&quot;nacionalidad&quot;</span><span class="p">:</span><span class="s">&quot;Venezolana&quot;</span><span class="p">,</span>
+                <span class="s">&quot;estado_civil&quot;</span><span class="p">:</span><span class="s">&quot;Soltero&quot;</span>
+            <span class="p">}</span>
+            <span class="n">clave</span> <span class="o">=</span> <span class="n">datos_basicos</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="n">valor</span> <span class="o">=</span> <span class="n">datos_basicos</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="n">cantidad_datos</span> <span class="o">=</span> <span class="n">datos_basicos</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            
+            <span class="k">for</span> <span class="n">clave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">cantidad_datos</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">clave</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">valor</span>
+            </pre></div>
+            </div>
+            <h3>Bucle for con else</h3>
+            <p>Al igual que la sentencia if y el bucle while, la estructura for también puede combinarse
+                con una sentencia else.
+                <br><br>
+                El nombre de la sentencia else es equivocada, ya que el bloque else se ejecutara en todos los casos,
+                es decir, cuando la expresion condicional del bucle for sea False.
+            </p>
+            <div class="highlight-python"><div class="highlight"><pre>
+            <span class="n">db_connection</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="s">&quot;5432&quot;</span><span class="p">,</span><span class="s">&quot;root&quot;</span><span class="p">,</span><span class="s">&quot;nomina&quot;</span>
+            <span class="k">for</span> <span class="n">parametro</span> <span class="ow">in</span> <span class="n">db_connection</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">parametro</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;&quot;&quot;El comando PostgreSQL es: </span>
+            <span class="s">$ psql -h {server} -p {port} -U {user} -d {db_name}&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">server</span><span class="o">=</span><span class="n">db_connection</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">port</span><span class="o">=</span><span class="n">db_connection</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+                    <span class="n">user</span><span class="o">=</span><span class="n">db_connection</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">db_name</span><span class="o">=</span><span class="n">db_connection</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+                </pre></div>
+            </div>
+
+            
+        </div>
+      </section>
+
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Selecciona "salir", si deseas cerrar la sesion.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="login.html">Salir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
