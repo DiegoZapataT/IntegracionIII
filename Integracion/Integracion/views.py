@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.template import Template, Context
 from django.shortcuts import render
 from random import sample
+import pandas as pd
+import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 import numpy as np
@@ -32,7 +34,28 @@ def tupla(request):
     return render(request, "Integracion/tuplas.html")
 
 def correlacional(request):
-    return render(request, "Integracion/correlacional.html")
+    x = []
+    y = []
+    data = getData(request)
+
+    for d in data:
+        x.append(d[0])
+        y.append(d[1])
+    f = plt.figure()
+    dict_data = {'var1':x,'var2':y}
+    df = pd.DataFrame(dict_data)
+    corr_matrix = df.corr()
+    ff, ax = plt.subplots(figsize=(9, 8))
+    sns.heatmap(corr_matrix, ax=ax, cmap="YlGnBu", linewidths=0.1, annot=True)
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
+    f.clear()
+    return render(request, "Integracion/correlacional.html", {'data': uri})
+
 
 def users(request):
     return render(request, "Integracion/users.html")
