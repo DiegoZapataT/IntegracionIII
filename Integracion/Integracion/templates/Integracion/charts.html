@@ -1,6 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -11,45 +10,35 @@
   <meta name="author" content="">
 
   <title>Plataforma DataScience - Inicio</title>
-
-{% include 'scripts.html' %}
-
+  {% include 'scripts.html' %}
 </head>
 
 <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper" >
+        {% include 'sidebar.html' %}
 
-  <!-- Page Wrapper -->
-  <div id="wrapper" >
-    {% include 'sidebar.html' %}
-    <div class="container" >
-      <div class="align-self-center" style="background-image: url('http://dineroclub.net/wp-content/uploads/2020/11/TRENDSDATA2.png'); background-size: 100%;">
-        <div class="row justify-content-md-center" style="height: 350px;">
-          <div class="col-6" align="center"></div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-4">
+                <a href="/promedio"><img class="rounded mx-auto d-block"src="https://python-graph-gallery.com/wp-content/uploads/2017/06/1_basic_barplot.png" style="height: 200px;"></a>
+                <p class="text-center">Gráfico de Barras</p>
+            </div>
+            <div class="col-4">
+                <a href="/regresionlineal"><img class="rounded mx-auto d-block"src="https://www.tutorialspoint.com/matplotlib/images/pie_chart.jpg" style="height: 200px;"></a>
+                <p class="text-center">Gráfico de Torta</p>
+            </div>
+            <div class="col-4">
+                <a href="/moda"><img class="rounded mx-auto d-block"src="https://fcpython.com/wp-content/uploads/2019/01/LineChart1.png" style="height: 200px;"></a>
+                <p class="text-center">Gráfico de Líneas</p>
+            </div>
         </div>
-        <div class="row justify-content-md-center">
-          <div class="col-6">
-            <a href="/users" class="btn btn-block btn-primary text-uppercase">Comenzar</a>
-          </div>
-        </div>
-        <div class="row justify-content-md-center" >
-          <div class="col-6 font-weight-bold text-primary" align="center"style="height: 200px;">
-              Texto Explica Web
-          </div>
-        </div>
-      </div>  
-     
-      {% include 'footer.html' %}  
+        <div class="row my-auto" style="height:200px;"></div>
 
+
+
+        {% include 'footer.html' %}
     </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+  <!-- End of Content Wrapper -->
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,7 +58,6 @@
       </div>
     </div>
   </div>
-
 
 </body>
 

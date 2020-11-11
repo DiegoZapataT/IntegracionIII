@@ -34,6 +34,12 @@ def tupla(request):
 def correlacional(request):
     return render(request, "Integracion/correlacional.html")
 
+def users(request):
+    return render(request, "Integracion/users.html")
+
+def charts(request):
+    return render(request, "Integracion/charts.html")
+
 def moda(request):
     # Creamos los datos para representar en el gráfico
     x = []
