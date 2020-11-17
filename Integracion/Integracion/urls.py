@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from Integracion.views import index, tutorial, charts, users, moda, promedio, regresionlineal, faq, correlacional,listas, tupla, logicos, condicional, bwhile, bfor
 from mongoconnect import views
+from django.conf import settings
+from django.conf.urls.static import static
  
 urlpatterns = [
     path('admin', admin.site.urls),
@@ -42,3 +44,6 @@ urlpatterns = [
     path('read_post/<str:id>', views.read_post),
     path('read_post_all', views.read_post_all, name='realdall'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,6 +2,9 @@ from django.http import HttpResponse
 from django.template import Template, Context
 from django.shortcuts import render
 from random import sample
+from .forms import UploadFileForm
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -9,6 +12,8 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg
 import numpy as np
 import io, urllib, base64
 from mongoconnect.views import getData
+import json
+import os
 
 def index(request):
     return render(request, "Integracion/index.html")
@@ -92,27 +97,73 @@ def moda(request):
     return render(request, "Integracion/g_moda.html", {'data': uri})
    # return render(request, "Integracion/moda.html")
 
+# def promedio(request):
+#     x = []
+#     y = []
+#     data = getData(request)
+
+#     for d in data:
+#         x.append(d[0])
+#         y.append(d[1])
+
+#     # Creamos una figura y le dibujamos el gráfico
+#     f = plt.figure()
+#     plt.bar(x, y, align="center", alpha=0.5)
+#     plt.xticks(x, y)
+#     # Como enviaremos la imagen en bytes la guardaremos en un buffer
+#     buf = io.BytesIO()
+#     plt.savefig(buf, format='png')
+#     buf.seek(0)
+#     string = base64.b64encode(buf.read())
+#     uri = urllib.parse.quote(string)
+#     f.clear()
+#     return render(request, "Integracion/g_promedio.html", {'data2': uri})
+
 def promedio(request):
-    x = []
-    y = []
-    data = getData(request)
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        data = open(os.path.join(settings.MEDIA_ROOT, myfile.name), 'rb').read()
+        data = str(data,'utf-8')
+        data = json.loads(data)
+        lenData = len(data)
+        pKeys = []
+        sKeys = []
+        j = 0
+        for i in range(0, lenData):
+            keys1 = []
+            for k in data[i].keys():
+                keys2 = []
+                keys1.append(k)
+                # try: #data[i][k][j].keys():
+                #     for ke in data[i][k][j].keys():
+                #         keys2.append(ke)
+                # except: a = "pos nada"
+                # pKeys[i][k].append(keys2)
+                # j += 1
 
-    for d in data:
-        x.append(d[0])
-        y.append(d[1])
+            pKeys.append(keys1)
 
-    # Creamos una figura y le dibujamos el gráfico
-    f = plt.figure()
-    plt.bar(x, y, align="center", alpha=0.5)
-    plt.xticks(x, y)
-    # Como enviaremos la imagen en bytes la guardaremos en un buffer
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png')
-    buf.seek(0)
-    string = base64.b64encode(buf.read())
-    uri = urllib.parse.quote(string)
-    f.clear()
-    return render(request, "Integracion/g_promedio.html", {'data2': uri})
+        data3 = data[0][pKeys[0][2]]
+        return render(request, "Integracion/g_promedio.html", {
+            'uploaded_file_url': lenData, 'data2': data3, 'data3': pKeys
+        })
+    no = "nope"
+    return render(request, "Integracion/g_promedio.html", {
+            'uploaded_file_url': no
+        })
+
+def dataPromedio(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            yes="yes"
+    else:
+        form = UploadFileForm()
+    return render(request, 'upload.html', {'form': form})
+
 
 def regresionlineal(request):
     dias = []
