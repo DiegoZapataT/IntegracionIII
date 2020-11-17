@@ -1,7 +1,6 @@
-
 from django.http import HttpResponse
 from django.shortcuts import render
-from mongoconnect.models import Posts, Prueba1
+from mongoconnect.models import Posts, Prueba1, Historial
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -32,15 +31,11 @@ def read_post_all(request):
     print (stringval)
     return HttpResponse(stringval)
 
-def getData1(request):
-    posts = Posts.objects.all()
-    stringval = ""
-    for post in posts:
-        stringval += "<h1> Post Title "+ post.post_title +"Comentario"+ post.comment[0]+"<br> <h1>"
-    stringval += "no"
-    return stringval
-
 def getData(request):
+    data = Historial.objects.all()
+    return data
+
+def getData1(request):
     m = []
     data = Prueba1.objects.all()
     for d in data:

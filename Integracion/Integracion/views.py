@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from django.template import Template, Context
 from django.shortcuts import render
 from random import sample
-from .forms import UploadFileForm
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import pandas as pd
