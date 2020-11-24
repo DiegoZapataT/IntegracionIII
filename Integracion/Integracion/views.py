@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 import numpy as np
 import io, urllib, base64
-from mongoconnect.views import getData
+from mongoconnect.views import getData, getData1, listar_colecciones_db
 import json
 import os
 
@@ -40,7 +40,7 @@ def tupla(request):
 def correlacional(request):
     x = []
     y = []
-    data = getData(request)
+    data = getData1(request)
 
     for d in data:
         x.append(d[0])
@@ -71,7 +71,7 @@ def moda(request):
     # Creamos los datos para representar en el gráfico
     x = []
     y = []
-    data = getData(request)
+    data = getData1(request)
     
     for d in data:
         x.append(d[0])
@@ -167,7 +167,7 @@ def dataPromedio(request):
 def regresionlineal(request):
     dias = []
     casos = []
-    data = getData(request)
+    data = getData1(request)
 
     for d in data:
         dias.append(d[0])
@@ -218,3 +218,9 @@ def plot(request):
 
     # # Devolvemos la response
     # return response
+
+def ver_datos(request):
+
+    lista = listar_colecciones_db(request)
+    print("ver_datos recibe m= ", lista)
+    return render(request, "Integracion/lista_datos.html",{'lista': lista})

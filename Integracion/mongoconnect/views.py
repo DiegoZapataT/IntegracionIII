@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from mongoconnect.models import Posts, Prueba1, Historial
 from django.views.decorators.csrf import csrf_exempt
-
+import pymongo
 # Create your views here.
 @csrf_exempt
 def add_post(request):
@@ -43,3 +43,13 @@ def getData1(request):
             m.append((d.dias[i],d.casos[i]))
     return m
 
+def listar_colecciones_db(request):
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["db"]
+    mycol = mydb["mongoconnect_historial"]
+    #lista_colecciones = ["db_1", "db_2"]
+    filter = {"name": {"$regex": r"^(?!system\.)"}}
+
+    lista_colecciones = mydb.list_collection_names(include_system_collections=False, filter=filter)
+    print (lista_colecciones)
+    return lista_colecciones
