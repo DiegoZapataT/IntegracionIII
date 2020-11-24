@@ -1,0 +1,50 @@
+<html>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+  {% include 'scripts.html' %}
+</head>
+<body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper" width=100%>
+    {% include 'sidebar.html' %}
+    <div style="position: absolute; top:0; height: 90%; width:83%;">
+  		<img src="data:image/png;base64,{{ data }}" alt="" height="500" ,width="800">
+  	</div>
+  </div>
+  <!-- End Page Wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top">
+		<i class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+			<div class="modal-body">Selecciona "salir", si deseas cerrar la sesion.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+				<a class="btn btn-primary" href="login.html">Salir</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,14 +1,28 @@
 from djongo import models
 
-class Posts(models.Model):
-    _id = models.ObjectIdField()
-    post_title = models.CharField(max_length = 255)
-    post_description = models.TextField()
-    comment = models.JSONField()
-    tags = models.JSONField()
-    objects = models.DjongoManager()
+class Arquetipos(models.Model):
+    tipo = models.IntegerField()
+    clave = models.CharField(max_length=50)
+    valor = models.CharField(max_length=50)
+    class Meta:
+        abstract=True
 
-class Prueba1(models.Model):
+class Sesiones_medica(models.Model):
+    nombre_sesion = models.CharField(max_length=50)
+    fecha = models.CharField(max_length=50)
+    nombre_profesional = models.CharField(max_length=50)
+    profesion = models.CharField(max_length=50)
+    centro_salud = models.CharField(max_length=50)
+    arquetipos = models.ArrayField(
+        model_container=Arquetipos,
+        blank = True, 
+        default = list
+    )
+
+    class Meta:
+        abstract=True
+
+class Historial(models.Model):
     _id = models.ObjectIdField()
     dias = models.JSONField()
     casos = models.JSONField()

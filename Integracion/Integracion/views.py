@@ -8,11 +8,13 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg
+from sklearn.linear_model import LinearRegression
 import numpy as np
 import io, urllib, base64
 from mongoconnect.views import getData, getData1, listar_colecciones_db, input_nombre_c
 import json
 import os
+
 
 def index(request):
     return render(request, "Integracion/index.html")
@@ -60,6 +62,104 @@ def correlacional(request):
     f.clear()
     return render(request, "Integracion/correlacional.html", {'data': uri})
 
+#Avance de paulina, crear grafico regresion lineal con datos leidos dede un csv
+def PCregreCSV(request):
+    datos = pd.read_csv('datos.csv')
+    datos.head()
+    fig   = plt.figure(figsize=(14,14))
+    plt.scatter(datos['y'],datos['x'])
+    plt.plot(datos['y'],datos['x'])
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.grid()
+    datos.keys()
+
+    ny = datos['y'].values.reshape(-1,1)
+    nx = datos['x'].values.reshape(-1,1)
+    lg = LinearRegression()
+    lg.fit(ny, nx)
+    xp = lg.predict(ny)
+
+    m = lg.coef_[0][0]
+    c = lg.intercept_[0]
+
+    fig = plt.figure(figsize=(25,14))
+    plt.plot(datos['y'],datos['x'],label='a')
+    plt.plot(ny, xp, color='red', label='b')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.grid()
+
+    fig = plt.gcf()
+    buf = io.BytesIO()
+    fig.savefig(buf,format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri =  urllib.parse.quote(string)
+    return render(request,'Integracion/PCregreCSV.html',{'data':uri})
+
+#Avance de paulina, crear grafico regresion lineal con datos numericos digitados por teclado
+def PCregreINP(request):
+    n = 50
+    x = request.POST.getlist('x')
+    y = request.POST.getlist('y')
+
+    # si ya se hizo submit de formulario...
+    if(x):
+        # convierte las listas x, y en diccionario
+        # pero solo con filas que tengan contenido
+        data  = [["x","y"]]
+        for i in range(len(x)):
+            if x[i] != '':
+                data.append([float(x[i]),float(y[i])])
+
+        # quita los encabezado de columna
+        cols  = data.pop(0)
+
+        # crea el data frame con los datos
+        datos = pd.DataFrame(data, columns=cols)
+        datos.keys()
+        ny = datos['y'].values.reshape(-1,1)
+        nx = datos['x'].values.reshape(-1,1)
+        lg = LinearRegression()
+        lg.fit(ny, nx)
+        xp = lg.predict(ny)
+        m  = lg.coef_[0][0]
+        c  = lg.intercept_[0]
+
+        # grafica los datos y su regresion lineal
+        fig = plt.figure(figsize=(25,14))
+        plt.scatter(datos['y'],datos['x'])
+        plt.plot(datos['y'],datos['x'])
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.grid()
+
+        plt.plot(ny, xp, color='red',   label='b')
+        plt.xlabel('x')
+        plt.ylabel('y')
+        plt.grid()
+
+        # prepara imagen de salida
+        fig = plt.gcf()
+        buf = io.BytesIO()
+        fig.savefig(buf,format='png')
+        buf.seek(0)
+        string = base64.b64encode(buf.read())
+        uri =  urllib.parse.quote(string)
+        return render(request,'Integracion/PCgrafico.html',{'data':uri})
+
+
+    context={}
+    context['veces'] = range(1,n)
+
+    return render(request, 'Integracion/PCregreINP.html', context)
+
+#Avance de paulina, ver datos del archivo arquetipos.json
+def PCverARQUE(request):
+    with open('arquetipos.json', encoding="utf-8") as json_file: 
+        datos = json.load(json_file)
+    return render(request, "Integracion/PCverARQUE.html",{'jdatos':datos})
 
 def users(request):
     return render(request, "Integracion/users.html")

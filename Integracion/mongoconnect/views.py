@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from mongoconnect.models import Posts, Prueba1, Historial
+#from mongoconnect.models import Posts, Prueba1, Historial
 from django.views.decorators.csrf import csrf_exempt
 from bson.json_util import dumps
 import pymongo
