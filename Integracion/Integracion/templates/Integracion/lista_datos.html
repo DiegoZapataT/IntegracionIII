@@ -1,15 +1,38 @@
 {% extends "Integracion/tipo_grafico.html" %}
+
+
+
 {% block title %}Base de datos{% endblock %}
 {% block content %}
+
 <h1>Base de datos:</h1>
 
 <br>
-asahjhg {{ lista }}
-
-{% for i in lista %}
-<br>
-{{ i }}
+<ul id="listado">
+{% for i in lista_c %}
+    <li style="height:15px" onclick="ver_colecciones(this);">{{ i}}</li><br>
 {% endfor %}
+</ul>
+_____
+<br>
+<br>
+<div>
+    <div id="t_listado">...</div><br>
+<div id="panel_listado">
+    <pre id="datos"> {{ lista_d }}</pre>
+</div>
+</div>
 
+
+<script>
+function ver_colecciones(asd) {
+  n = asd.innerHTML;
+  //m = "";
+  //asd.style.color = "pink";
+  //document.getElementById("datos").innerHTML =  m;
+  document.getElementById("t_listado").innerHTML = "Registros de "+n+":";
+}
+
+</script>
 
 {% endblock %}

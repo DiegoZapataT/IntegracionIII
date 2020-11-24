@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 import numpy as np
 import io, urllib, base64
-from mongoconnect.views import getData, getData1, listar_colecciones_db
+from mongoconnect.views import getData, getData1, listar_colecciones_db, input_nombre_c
 import json
 import os
 
@@ -219,8 +219,17 @@ def plot(request):
     # # Devolvemos la response
     # return response
 
-def ver_datos(request):
+def ver_datos(request, asff="historial"):
 
-    lista = listar_colecciones_db(request)
-    print("ver_datos recibe m= ", lista)
-    return render(request, "Integracion/lista_datos.html",{'lista': lista})
+    #funcion sin implementar
+    #if request.method=='POST':
+    #    nombre = input_nombre_c(data=request.POST)
+
+
+    lista_c = listar_colecciones_db(request)[0]
+    lista_d_todo = listar_colecciones_db(request)[2]
+    #print (lista_d_todo)
+
+    lista_d_doc = listar_colecciones_db(request)[1]
+    #print(lista_d_doc)
+    return render(request, "Integracion/lista_datos.html",{'lista_c': lista_c, 'lista_d': lista_d_todo, 'doc':lista_d_doc})
