@@ -312,6 +312,18 @@ def regresionlineal(request):
 def faq(request):
     return render(request, "Integracion/faq.html")
 
+def recursiva(json_array):
+    datos = []
+    for obj in json_array:
+        if isinstance(obj, dict):
+            datos.append(obj.get('id'))
+            children = obj.get('children', None)
+            if children:
+                datos.extend(recursiva(children))
+        elif isinstance(obj, list):
+            datos.extend(recursiva(obj))
+    return datos
+
 def plot(request):
     # Creamos los datos para representar en el gráfico
     x = range(1,11)
