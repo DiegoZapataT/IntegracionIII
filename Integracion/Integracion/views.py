@@ -219,6 +219,15 @@ def moda(request):
 #     return render(request, "Integracion/g_promedio.html", {'data2': uri})
 
 def promedio(request):
+    # if 'datajson' in request.session:
+    #     data = request.session['datajson']
+    #     del request.session['datajson']
+    #     data, datap, lenData, pKeys = dataJson(request, data)
+    #     return render(request, "Integracion/g_promedio.html", {
+    #         'uploaded_file_url': data, 'datajson': data, 'lenData': lenData, 'keysjson': pKeys[0]
+    #     })
+
+    # if 'datajson' not in request.session:
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
@@ -227,42 +236,54 @@ def promedio(request):
         data = open(os.path.join(settings.MEDIA_ROOT, myfile.name), 'rb').read()
         data = str(data,'utf-8')
         data = json.loads(data)
-        lenData = len(data)
-        pKeys = []
-        sKeys = []
-        j = 0
-        for i in range(0, lenData):
-            keys1 = []
-            for k in data[i].keys():
-                keys2 = []
-                keys1.append(k)
-                # try: #data[i][k][j].keys():
-                #     for ke in data[i][k][j].keys():
-                #         keys2.append(ke)
-                # except: a = "pos nada"
-                # pKeys[i][k].append(keys2)
-                # j += 1
-
-            pKeys.append(keys1)
-
-        data3 = data[0][pKeys[0][2]]
+        # request.session['datajson'] = data
+        data, datap, lenData, pKeys = dataJson(request, data)
         return render(request, "Integracion/g_promedio.html", {
-            'uploaded_file_url': lenData, 'data2': data3, 'data3': pKeys
-        })
-    no = "nope"
-    return render(request, "Integracion/g_promedio.html", {
-            'uploaded_file_url': no
+            'uploaded_file_url': data, 'datajson': data, 'lenData': lenData, 'keysjson': pKeys[0]
         })
 
-def dataPromedio(request):
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            yes="yes"
-    else:
-        form = UploadFileForm()
-    return render(request, 'upload.html', {'form': form})
+    return render(request, "Integracion/g_promedio.html")
 
+def dataJson(request, data):
+    lenData = len(data)
+    pKeys = []
+    for i in range(0, lenData):
+        keys1 = []
+        for k in data[i].keys():
+            keys1.append(k)
+        
+        pKeys.append(keys1)
+    datap = []
+    d = []
+    for i in range(0, lenData):
+        dd = []
+        for u in range(0, len(pKeys)):
+            a = pKeys[u]
+            dd.append(data[i])
+        d.append(dd)
+    for k in pKeys[0]:
+        print (k)
+    if "nombre" in pKeys[0]:
+        for u in range(0,lenData):
+            datap.append(data[u]['nombre'])  
+
+    return (data, d, lenData, pKeys) 
+    
+
+def dataPac(request):
+    if request.method == 'POST' and request.POST.get['spac']:
+        return render(request, "Integracion/g_promedio.html", {
+            'dpaciente': 'funcawei', 'uploaded_file_url': 'ti'
+        })
+        # data = request.session['datajson']
+        # lenData = len(data)
+        
+        # for i in range(0,lenData):
+        #     if data[i]["nombre"] == request.POST.get['spac']:
+        #         dpac = data[i]
+        #         return render(request, "Integracion/g_promedio.html", {
+        #             'dpaciente': dpac, 'uploaded_file_url': 'ti'
+        #         })
 
 def regresionlineal(request):
     dias = []

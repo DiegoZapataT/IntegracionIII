@@ -9,12 +9,57 @@
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="myfile" accept=".json">
-    <button type="submit">Upload</button>
+    <button type="submit" class="btn btn-primary">Subir</button>
   </form>
 
   {% if uploaded_file_url %}
-    <p><a href="{{ uploaded_file_url }}">{{ uploaded_file_url }} <br><br><br><br> {{data2}}<br><br><br><br> {{data3}}</a></p>
-    <!-- <img src="data:image/png;base64,{{data2}}" width="600px" /> -->
+    <table class="table-striped">
+      <th>
+        {% for k in keysjson %}
+          <td> {{ k }} </td>
+        {% endfor %}
+        <td> opciones </td>
+      </th>
+      {% for d in datajson %}
+      <tr>
+        {% for k, v in d.items %}
+          {% if v.items %}
+            {% for a, b in v.items %}
+              <td> {{ b }}</td> 
+            {% endfor %}
+          {% else %}
+            <td> {{ v }}</td>
+          {% endif %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+
+    <!--
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <p>data={{ uploaded_file_url }} <br><br></p>
+       <img src="data:image/png;base64,{{data2}}" width="600px" /> 
+      <select id='spac' name='spac'>
+        {% for k in datajson %}  
+            <option value="{{k}}"> {{k}} </option>
+        {% endfor %}
+
+      </select>
+      <button type="submit" class="btn btn-primary">Seleccionar</button>
+      largo = {{lenData}}
+    
+    </form>
+    keys = {{ pKeys }}
+
+    -->
   {% endif %}
+  <!-- {% if dpaciente %}
+
+    aKIIIIIIAIiIiiiaiiIII
+    {{ dpaciente }}
+
+  {% endif %} -->
 
 {% endblock %}
