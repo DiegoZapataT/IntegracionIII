@@ -15,17 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Integracion.views import index, tutorial, charts, users, moda, promedio, regresionlineal, faq, correlacional,listas, tupla, logicos, condicional, bwhile, bfor, ver_datos, PCregreCSV, PCregreINP, PCverARQUE
+from Integracion.views import index, tutorial, charts, users, moda, faq, bfor, listas, tupla, logicos, condicional, bwhile, ver_datos, PCregreCSV, PCverARQUE, promedio
 from mongoconnect import views
 from django.conf import settings
 from django.conf.urls.static import static
  
 urlpatterns = [
+    path('subir_archivo/', promedio),
+    path('PCverARQUE/', PCverARQUE),
+    path('PCregreCSV/', PCregreCSV),
     path('admin', admin.site.urls),
     path('tutorial/', tutorial),
-    path('PCregreCSV/', PCregreCSV),
-    path('PCregreINP/', PCregreINP),
-    path('PCverARQUE/', PCverARQUE),
+    path('datos/', ver_datos),
     path('bfor/', bfor),
     path('listas/', listas),
     path('tuplas/', tupla),
@@ -33,18 +34,10 @@ urlpatterns = [
     path('condicional/', condicional),
     path('bwhile/', bwhile),
     path('grafico/', moda),
-    path('subir_archivo/', promedio),
-    path('datos/', ver_datos),
     path('faq/', faq),
     path('users/', users),
     path('charts/', charts),
     path('', index),
-    path('add_post/', views.add_post),
-    path('update_post/<int:id>',views.update_post),
-    path('delete_post/<int:id>', views.delete_post),
-    path('getData', views.getData),
-    path('read_post/<str:id>', views.read_post),
-    path('read_post_all', views.read_post_all, name='realdall'),
 ]
 
 if settings.DEBUG:
