@@ -35,36 +35,23 @@ file = eval(file)
 #se insertan los datos 
 coleccion.insert_many(file)
 
-#Revisa lo que se envia desde el html
-def Ruta(Var,Donde,Bandera):
+#Revisa lo que se envia desde el html para las consultas
+def Ruta(Var,Bandera):
     if Var == 'nombre_sesion' or Var == 'fecha' or Var == 'nombre_profesional' or Var == 'profesion' or Var == 'centro_salud':
         Var == 'sesiones_medica.'+Var
-        Bandera= 1
-    
-    if Donde == 'nombre_sesion' or Donde == 'fecha' or Donde == 'nombre_profesional' or Donde == 'profesion' or Donde == 'centro_salud':
-        Donde = 'sesiones_medica.'+Donde
 
     if Var == 'tipo' or Var == 'clave' or Var == 'valor':
         Var = 'sesiones_medica.arquetipos.'+Var
-        Bandera = 2
+    return Var, Bandera
 
-    if Donde == 'tipo' or Donde == 'clave' or Donde == 'valor':
-        Donde = 'sesiones_medica.arquetipos.'+Donde
-
-    return Var, Donde, Bandera
-
-def Frecuencia(Var,Donde,Cond,Input):
+def Frecuencia(Var):
     Variable = []
     OVar = Var 
-    Bandera=0
     Moda=[]
     Total=0
     Consulta = []
-    if Donde == 'tipo':
-        try: Input = int(Input)
-        except: pass
 
-    Var, Donde, Bandera = Ruta(Var,Donde,Bandera)
+    Var = Ruta(Var)
 
 
     #Dependiendo lo que se pida desde el formulario, se crea una consulta distinta
@@ -95,15 +82,12 @@ def Frecuencia(Var,Donde,Cond,Input):
     if Var == 'centro_salud':
         ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$sesiones_medica.centro_salud"},}}
 
-    if Var == 'clave':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$sesiones_medica.arquetipos.clave"},}}
 
     #Order By: ASC
     ConsultaOrdenada = {'$sort':{'_id':1}}
     print('diccionaro grupo: ', ConsultaGrupo)
 
     Consulta.append(ConsultaGrupo)
-    Consulta.append(ConsultaOrdenada)
     print(Consulta)
 
     #se envia la consulta a mongo y luego se recorre para guardar los resultados que se obtengan de la misma
@@ -111,7 +95,7 @@ def Frecuencia(Var,Donde,Cond,Input):
     for enviar in respuesta:
         Variable.append(enviar[OVar])
 
-    #los valores del arreglo a un arreglo unidimensional
+    #los valores del arreglo a un arreglo unidimensional para enviar a java
     Variable = flatten(Variable)
 
     #Se cambian las, por . para evitar conflictos con JavaScript

@@ -41,7 +41,7 @@
 				color: 'rgb(222,164,32)',
 				opacity:1,
 				line: {
-					color:'rgb(0,0,0)',
+					color:'rgb(154,54,45)',
 					width: 1.5
 				}
 			}
@@ -75,8 +75,11 @@
 		</optgroup>
 	</select>
 	<br>
-	<br>
-
 	<input type="submit" value="Generar Grafico" class="btn btn-primary">
+	<br>
+	<b style="text-align:center">Resultado de la consulta:</b>
+	<div class="card bg-light mb-3" id='moda'>
+		<div class="card-header"><b>El dato que se repitio más veces es/son: {{parametros.1}}</b></div>
+	</div>
 	</form>
 {% endblock %}

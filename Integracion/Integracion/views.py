@@ -148,9 +148,6 @@ def charts(request):
 
 def moda(request):
     Var=''
-    Donde='nombre'
-    Cond='$eq'
-    Input=''
     Contador=[]
     Variable=[]
     Moda=[]
@@ -158,18 +155,12 @@ def moda(request):
 
     if request.method == "POST":
         Var = request.POST['drop2']
-        try:
-            Donde = request.POST['drop3']
-            Cond  = request.POST['drop4']
-            Input = request.POST['input1']
-        except: pass
-
-        Variable, Contador, Moda, Total = grafico.Frecuencia(Var,Donde,Cond,Input)
+        Variable, Contador, Moda, Total = grafico.Frecuencia(Var)
 
     print("Contador :",Contador)
     print(Variable)
 
-    return render(request, "Integracion/g_moda.html", {"params":(Var,Donde,Input,Cond,Moda,Total),"Variable":Variable,"Contador":Contador,"Moda":Moda,"Total":Total})
+    return render(request, "Integracion/g_moda.html", {"parametros":(Var,Moda,Total),"Variable":Variable,"Contador":Contador,"Moda":Moda,"Total":Total})
 
 
 def promedio(request):
