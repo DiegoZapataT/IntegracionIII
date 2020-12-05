@@ -11,7 +11,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg
 from sklearn.linear_model import LinearRegression
 import numpy as np
 import io, urllib, base64
-from mongoconnect.views import getData, getData1, listar_colecciones_db, input_nombre_c
+from mongoconnect.views import getData, getData1, listar_colecciones_db, listar_datos_col
 import json
 import os
 import Integracion.grafico as grafico
@@ -247,13 +247,13 @@ def faq(request):
 #            datos.extend(recursiva(obj))
 #    return datos
 
+
 def ver_datos(request, asff="historial"):
-
-
-
-    lista_c = listar_colecciones_db(request)[0]
-    lista_d_todo = listar_colecciones_db(request)[2]
-
-    lista_d_doc = listar_colecciones_db(request)[1]
-
-    return render(request, "Integracion/lista_datos.html",{'lista_c': lista_c, 'lista_d': lista_d_todo, 'doc':lista_d_doc})
+    lista_c = listar_colecciones_db()
+    c_data = "none"
+    if request.method == 'POST':
+        if request.POST["listado_colecciones"]:
+            nombre_coleccion = request.POST["listado_colecciones"]
+            c_data = listar_datos_col(nombre_coleccion)
+            return render(request, "Integracion/lista_datos.html", {'c_data': c_data, 'lista_c': lista_c})
+    return render(request, "Integracion/lista_datos.html",{'c_data': c_data, 'lista_c': lista_c})
