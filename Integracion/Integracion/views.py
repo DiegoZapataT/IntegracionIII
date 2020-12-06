@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 from django.template import Template, Context
 from django.shortcuts import render
+from django.shortcuts import redirect
 from random import sample
+from django.core.paginator import Paginator
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import pandas as pd
@@ -248,12 +250,20 @@ def faq(request):
 #    return datos
 
 
-def ver_datos(request, asff="historial"):
+def ver_datos(request):
     lista_c = listar_colecciones_db()
     c_data = "none"
     if request.method == 'POST':
         if request.POST["listado_colecciones"]:
-            nombre_coleccion = request.POST["listado_colecciones"]
-            c_data = listar_datos_col(nombre_coleccion)
-            return render(request, "Integracion/lista_datos.html", {'c_data': c_data, 'lista_c': lista_c})
+            c_nombre = request.POST["listado_colecciones"]
+            #return render(request, "Integracion/lista_datos_resultados.html/aas", {'c_data': c_data, 'lista_c': lista_c, 'c_nombre': c_nombre})
+            return redirect('/datos/'+c_nombre+'/')
     return render(request, "Integracion/lista_datos.html",{'c_data': c_data, 'lista_c': lista_c})
+
+def ver_datos2(request, nc):
+    c_titulo = nc
+    c_data = listar_datos_col(nc)
+    paginator = Paginator(c_data, 25)  # muestra 25 por pag.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, "Integracion/lista_datos_resultados.html", {'c_titulo':c_titulo, 'c_data': c_data, 'page_obj': page_obj})

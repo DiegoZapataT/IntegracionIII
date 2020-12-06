@@ -63,5 +63,6 @@ def listar_datos_col(collect_name):
     mycol = mydb[nom]
     mi_col = mycol.find({})
     l_mi_col = list(mi_col)
-    colls_pretty = dumps(l_mi_col,indent =4)
-    return colls_pretty
+    #colls_pretty = dumps(l_mi_col,indent =4)
+    #return colls_pretty
+    return l_mi_col

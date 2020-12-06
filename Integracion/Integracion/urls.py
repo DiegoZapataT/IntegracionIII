@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Integracion.views import index, tutorial, charts, users, moda, faq, bfor, listas, tupla, logicos, condicional, bwhile, ver_datos, PCregreCSV, PCverARQUE, promedio
+from Integracion.views import index, tutorial, charts, users, moda, faq, bfor, listas, tupla, logicos, condicional, bwhile, ver_datos, ver_datos2, PCregreCSV, PCverARQUE, promedio
 from mongoconnect import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin', admin.site.urls),
     path('tutorial/', tutorial),
     path('datos/', ver_datos),
+    path('datos/<str:nc>/', ver_datos2),
     path('bfor/', bfor),
     path('listas/', listas),
     path('tuplas/', tupla),

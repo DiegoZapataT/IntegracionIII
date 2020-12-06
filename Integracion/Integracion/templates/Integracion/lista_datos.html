@@ -2,9 +2,7 @@
 
 {% block title %}Base de datos{% endblock %}
 {% block content %}
-
 <h3>Bases de datos disponibles:</h3><br>
-
 <form action="" method="post" id="form_listac">
   {% csrf_token %}
   <select id="listado_colecciones" name="listado_colecciones" size="3" multiple>
@@ -15,11 +13,7 @@
   <input type="submit" value="Ver datos">
 </form>
 <br><br>
-
-  <div id="area_datos" style="background-color:white; width:95%; height:500px; overflow-x: scroll;">
-    <pre id="datos"> {{ c_data }}</pre>
-  </div>
-
+No ha realizado una búsqueda
 
 
 {% endblock %}
