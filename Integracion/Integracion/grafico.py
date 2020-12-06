@@ -36,13 +36,13 @@ file = eval(file)
 coleccion.insert_many(file)
 
 #Revisa lo que se envia desde el html para las consultas
-def Ruta(Var,Bandera):
+def Ruta(Var):
     if Var == 'nombre_sesion' or Var == 'fecha' or Var == 'nombre_profesional' or Var == 'profesion' or Var == 'centro_salud':
         Var == 'sesiones_medica.'+Var
 
     if Var == 'tipo' or Var == 'clave' or Var == 'valor':
         Var = 'sesiones_medica.arquetipos.'+Var
-    return Var, Bandera
+    return Var
 
 def Frecuencia(Var):
     Variable = []

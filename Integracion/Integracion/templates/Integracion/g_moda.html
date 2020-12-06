@@ -5,7 +5,7 @@
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
-<h1 style="text-align:center">Grafico a Trabajar</h1>
+<h1 style="text-align:center">Grafico</h1>
 <h3 style="text-align:center"><b>Frecuencia de repeticion para historiales clinicos</b></h1>
 
 
@@ -78,8 +78,9 @@
 	<input type="submit" value="Generar Grafico" class="btn btn-primary">
 	<br>
 	<b style="text-align:center">Resultado de la consulta:</b>
-	<div class="card bg-light mb-3" id='moda'>
-		<div class="card-header"><b>El dato que se repitio más veces es/son: {{parametros.1}}</b></div>
+	<div class="card bg-light mb-3">
+		<div class="card-header">El dato que se repitio más veces es/son: {{parametros.1}}</div>
+		<div class="card-header">Cantidad de datos trabajados: {{parametros.2}}</div>
 	</div>
 	</form>
 {% endblock %}
