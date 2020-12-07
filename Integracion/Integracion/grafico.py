@@ -23,17 +23,15 @@ Dir2 = Dir+'\\hitorial.json'
 
 #Se abre a travez de varias rutas distintas para asegurar su funcionamiento
 try: 
-    file = open(Dir1)
+    DataBase = open(Dir1)
 except:
-    file = open(Dir2)
+    DataBase = open(Dir2)
 
 #se abre el archivo JSON para almacenarlo
-file = str(json.load(file))
-file = file.replace('$oid','id') #reemplazamos el id
-file = eval(file)
-
-#se insertan los datos 
-coleccion.insert_many(file)
+DataBase = str(json.load(DataBase))
+DataBase = DataBase.replace('$oid','id') #reemplazamos el id
+DataBase = eval(DataBase)
+coleccion.insert_many(DataBase)
 
 #Revisa lo que se envia desde el html para las consultas
 def Ruta(Var):
@@ -46,7 +44,7 @@ def Ruta(Var):
 
 def Frecuencia(Var):
     Variable = []
-    OVar = Var 
+    VariableRecibida = Var 
     Moda=[]
     Total=0
     Consulta = []
@@ -56,36 +54,42 @@ def Frecuencia(Var):
 
     #Dependiendo lo que se pida desde el formulario, se crea una consulta distinta
     if Var == 'nombre':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$nombre"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$nombre"},}}
     
     if Var == 'apellidos':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$apellidos"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$apellidos"},}}
 
     if Var == 'rut':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$rut"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$rut"},}}
 
     if Var == 'direccion':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$direccion"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$direccion"},}}
+
+    if Var == 'fecha_nacimiento':
+        ConsultaGrupo = {"$group": { "_id": "$_id", VariableRecibida: {"$push": "$fecha_nacimiento"},}}
     
+    if Var == 'ciudad':
+        ConsultaGrupo = {"$group": { "_id": "$_id", VariableRecibida: {"$push": "$ciudad"},}} 
+              
     if Var == 'nombre_sesion':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$sesiones_medica.nombre_sesion"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.nombre_sesion"},}}
 
     if Var == 'fecha':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$sesiones_medica.fecha"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.fecha"},}}
 
     if Var == 'nombre_profesional':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$sesiones_medica.nombre_profesional"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.nombre_profesional"},}}
     
     if Var == 'profesion':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$sesiones_medica.profesion"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.profesion"},}}
 
     if Var == 'centro_salud':
-        ConsultaGrupo = { "$group": { "_id": "$_id", OVar: {"$push": "$sesiones_medica.centro_salud"},}}
+        ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.centro_salud"},}}
 
 
     #Order By: ASC
-    ConsultaOrdenada = {'$sort':{'_id':1}}
-    print('diccionaro grupo: ', ConsultaGrupo)
+    #ConsultaOrdenada = {'$sort':{'_id':1}}
+    #print('diccionaro grupo: ', ConsultaGrupo)
 
     Consulta.append(ConsultaGrupo)
     print(Consulta)
@@ -93,7 +97,7 @@ def Frecuencia(Var):
     #se envia la consulta a mongo y luego se recorre para guardar los resultados que se obtengan de la misma
     respuesta = db.arquetipos.aggregate(Consulta)
     for enviar in respuesta:
-        Variable.append(enviar[OVar])
+        Variable.append(enviar[VariableRecibida])
 
     #los valores del arreglo a un arreglo unidimensional para enviar a java
     Variable = flatten(Variable)
