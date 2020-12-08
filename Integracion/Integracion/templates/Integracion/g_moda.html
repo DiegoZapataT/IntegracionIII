@@ -77,7 +77,41 @@
 		</optgroup>
 	</select>
 	<br>
-	<input type="submit" value="Generar Grafico" class="btn btn-primary">
+	<input type="button" value="Consulta Avanzada" class="btn btn-primary" onclick="addForm();">
+		<div name='conava' id='conava' style='display: none;'>
+			<select name = "drop2">
+				<optgroup label="Paciente">
+					<option value="nombre">Nombre Paciente</option>
+					<option value="apellidos">Apellidos Paciente</option>
+					<option value="rut">Rut Paciente</option>
+					<option value="direccion">Direccion Paciente</option>
+					<option value="fecha_nacimiento">Fecha de Nacimiento Paciente</option>
+					<option value="ciudad">Ciudad de Residencia Paciente</option>
+				</optgroup>
+				<optgroup label="Sesion Medica">
+					<option value="nombre_sesion">Nombre Sesion</option>
+					<option value="fecha">Fecha Sesion</option>
+					<option value="nombre_profesional">Nombre Medico</option>
+					<option value="profesion">Especialidad Medico</option>	
+					<option value="centro_salud">Centro de Salud</option>	
+				</optgroup>
+				<optgroup label="Arquetipos">
+					<option value="tipo">Tipo</option>
+					<option value="clave">Clave</option>
+					<option value="valor">Valor</option>
+				</optgroup>
+			</select>
+			<select name='drop3'>
+				<option value='='>Igual</option>
+				<option value='!='>Diferente</option>
+				<option value='>'>Mayor</option>
+				<option value='<'>Menor</option>
+				<option value='>='>Mayor Igual</option>
+				<option value='<='>Menor Igual</option>
+			</select>
+			<input type="text" name='dato'>
+		</div>
+		<input type="submit" value="Generar Grafico" class="btn btn-primary">
 	<br>
 	<b style="text-align:center">Resultado de la consulta:</b>
 	<div class="card bg-light mb-3">
@@ -85,4 +119,15 @@
 		<div class="card-header">Cantidad de datos trabajados: {{parametros.2}}</div>
 	</div>
 	</form>
+
+	<script>
+		function addForm() {
+      var v = document.getElementById("conava");
+      if (v.style.display === "none") {
+         v.style.display = "block";
+      } else {
+         v.style.display = "none";
+      }
+   }
+	</script>
 {% endblock %}
