@@ -13,10 +13,11 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg
 from sklearn.linear_model import LinearRegression
 import numpy as np
 import io, urllib, base64
-from mongoconnect.views import getData, getData1, listar_colecciones_db, listar_datos_col
+from mongoconnect.views import getData, getData1, listar_colecciones_db, listar_datos_col, lista_indices
 import json
 import os
 import Integracion.grafico as grafico
+import Integracion.grafico2 as grafico2
 
 
 def index(request):
@@ -267,3 +268,20 @@ def ver_datos2(request, nc):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, "Integracion/lista_datos_resultados.html", {'c_titulo':c_titulo, 'c_data': c_data, 'page_obj': page_obj})
+
+
+def graficov2(request):
+    Contador=[]
+    Variable=[]
+    Moda=[]
+    Total=0
+    aColecciones = listar_colecciones_db()
+    aColeccionesCat = []
+    for i in range(len(aColecciones)):
+        aColeccionesCat.append(  (aColecciones[i],lista_indices(aColecciones[i]))  )
+
+    if request.method == "POST" and request.POST['drop2']:
+        variable, collection = request.POST['drop2'].split('+')
+        Variable, Contador, Moda, Total = grafico2.frecuencia(variable, collection)
+    return render(request, "Integracion/graficador.html",{ "Variable":Variable,"Contador":Contador,"Moda":Moda,"Total":Total, 'lista_cd_sub':aColeccionesCat})
+

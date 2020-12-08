@@ -1,0 +1,80 @@
+{% extends "Integracion/tipo_grafico.html" %}
+{% block title %}Frecuencia y moda{% endblock %}
+{% block content %}
+<head>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<h1 style="text-align:center">Gráfico</h1>
+<h3 style="text-align:center"><b>Frecuencia de repeticion para historiales clinicos</b></h3>
+
+
+<!--<img src="data:image/png;base64,{{data}}" width="600px" /-->
+<div style="text-align:center" id="tester" style="width:600px;height:450px;">
+<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script>
+
+	var Variable = '{{Variable}}'	; var Counter='{{Contador}}';
+
+	function eje_x(Variable){
+		Variable = Variable.replace(/&quot;/g,'');
+		Variable = Variable.replace('[',''); Variable = Variable.replace(']','');
+		Variable = Variable.toString(); Variable = Variable.split(',')
+		console.log(Variable)
+		return Variable;
+	};
+
+	function eje_y(aCounter){
+		aCounter = aCounter.replace('[',''); 
+		aCounter = aCounter.replace(']','');
+		aCounter = aCounter.split(',').map(Number);
+		console.log(aCounter);
+		return aCounter;
+	}
+
+	var data = [
+		{
+			x: eje_x(Variable),
+			y: eje_y(Counter),
+			type: 'scatter',
+			marker: {
+				color: 'rgb(222,164,32)',
+				opacity:1,
+				line: {
+					color:'rgb(154,54,45)',
+					width: 1.5
+				}
+			}
+		}
+	]
+
+	Plotly.newPlot('tester', data)
+</script>
+</div>
+
+
+    <form method="post">
+        {% csrf_token %}
+        <b>Graficar valores individuales:</b>
+
+		<select name="drop2">
+        {% for i, j in lista_cd_sub %}
+			{{i}}
+			<optgroup label="{{i}}">
+			{% for o in j %}
+				<option value="{{o}}+{{i}}">{{o}}</option>
+			{% endfor %}
+			</optgroup>
+		{% endfor %}
+
+		</select>
+		<br>
+		<input type="submit" value="Generar Grafico" class="btn btn-primary">
+    </form>
+	<br><br>
+	<b style="text-align:center">Resultado de la consulta:</b><br>
+	<div class="card bg-light mb-3">
+		<div class="card-header">El dato que se repitió más veces es/son: {{ Moda }}</div>
+		<div class="card-header">Cantidad de datos trabajados: {{ Total }}</div>
+	</div>
+{% endblock %}

@@ -53,7 +53,8 @@ def listar_colecciones_db():
     milista = []
     for i in lista_colecciones:
         if "mongoconnect" in i:
-            milista.append(i[13:])
+            if mydb[i].count() != 0:
+                milista.append(i[13:])
     return milista
 
 def listar_datos_col(collect_name):
@@ -66,3 +67,13 @@ def listar_datos_col(collect_name):
     #colls_pretty = dumps(l_mi_col,indent =4)
     #return colls_pretty
     return l_mi_col
+
+def lista_indices(collection):
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["db"]
+    mycol = mydb['mongoconnect_' + collection]
+    cosa = []
+    mi_col = mycol.find_one()
+    for key in mi_col:
+        cosa.append(key)
+    return cosa[1:]
