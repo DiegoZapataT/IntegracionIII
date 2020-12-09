@@ -46,21 +46,22 @@ def getData1(request):
 
 def listar_colecciones_db():
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-    mydb = myclient["db"]
-    mycol = mydb["mongoconnect_historial"]
+    mydb = myclient["historiales"]
+    #mycol = mydb["mongoconnect_historial"]
     filter = {"name": {"$regex": r"^(?!system\.)"}}
     lista_colecciones = mydb.list_collection_names(include_system_collections=False, filter=filter)
     milista = []
-    for i in lista_colecciones:
-        if "mongoconnect" in i:
-            if mydb[i].count() != 0:
-                milista.append(i[13:])
+   # for i in lista_colecciones:
+   #     if "mongoconnect" in i:
+   #         if mydb[i].count() != 0:
+   #             milista.append(i[13:])
+    milista.append('arquetipos')
     return milista
 
 def listar_datos_col(collect_name):
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-    mydb = myclient["db"]
-    nom = str("mongoconnect_"+collect_name)
+    mydb = myclient["historiales"]
+    nom = str(collect_name)
     mycol = mydb[nom]
     mi_col = mycol.find({})
     l_mi_col = list(mi_col)
@@ -70,8 +71,8 @@ def listar_datos_col(collect_name):
 
 def lista_indices(collection):
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-    mydb = myclient["db"]
-    mycol = mydb['mongoconnect_' + collection]
+    mydb = myclient["historiales"]
+    mycol = mydb[collection]
     cosa = []
     mi_col = mycol.find_one()
     for key in mi_col:

@@ -8,7 +8,7 @@ from bson.son import SON
 #no se configure un usuario para la aplicación (con permisos limitados
 #sobre la bd)
 myclient = MongoClient("mongodb://localhost:27017/")
-mydb = myclient["db"]
+mydb = myclient["historiales"]
 
 
 
@@ -16,7 +16,7 @@ mydb = myclient["db"]
 # el arreglo Variable con los nombres de la variable a buscar y
 # el arreglo Contador con la cantidad de ocurrencias de cada valor de Variable
 def frecuencia(variable, collection):
-    mycol = mydb['mongoconnect_' + collection]
+    mycol = mydb[ collection]
     variable = '$'+variable
     consulta = [
            {"$unwind": variable},
