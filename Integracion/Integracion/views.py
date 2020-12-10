@@ -18,6 +18,7 @@ import json
 import os
 import Integracion.grafico as grafico
 import Integracion.grafico2 as grafico2
+from bson.json_util import dumps
 
 
 def index(request):
@@ -264,6 +265,8 @@ def ver_datos(request):
 def ver_datos2(request, nc):
     c_titulo = nc
     c_data = listar_datos_col(nc)
+    for i in range (len(c_data)):
+        c_data[i] = (c_data[i]["_id"], dumps(c_data[i], indent=4))
     paginator = Paginator(c_data, 25)  # muestra 25 por pag.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

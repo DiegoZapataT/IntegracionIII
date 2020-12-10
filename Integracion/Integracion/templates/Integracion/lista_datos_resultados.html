@@ -3,12 +3,14 @@
 {% block title %} {{ c_titulo }} {% endblock %}
 {% block content %}
 
+
+
 <h3>Resultados para {{c_titulo}}</h3><br>
 <div id="area_datos" style="background-color:white; width:95%; height:500px; overflow-x: scroll;">
-{% for i in page_obj %}
+{% for id, registro in page_obj %}
     <div onclick="bbb(this);">
-        ver registro
-        <pre><div class="masinfo" style="display:none">{{ i }}</div></pre><br><br>
+        <div class="id_masinfo">{{id}}</div>
+        <pre><div class="masinfo" style="display:none">{{ registro }}</div></pre><br><br>
     </div>
 {% endfor %}
 </div>
@@ -35,15 +37,16 @@
 <a href="/datos/">Volver a búsqueda</a>
 <script>
     function bbb(e){
-      x = e.querySelector(".masinfo");
-      n = x.innerHTML.replace(/'/g, '"');
+      x1 = e.querySelector(".id_masinfo");
+      x2 = e.querySelector(".masinfo");
+      //n = x.innerHTML.replace(/'/g, '"');
       //x.textContent = JSON.parse(JSON.stringify(n, null, '\t'));
-      x.innerHTML = JSON.parse(JSON.stringify(n, null, '\t'));
-      if(x.style.display === "block"){
-        x.style.display = "none";
+      //x.innerHTML = JSON.parse(JSON.stringify(n, null, '\t'));
+      if(x2.style.display === "block"){
+        x2.style.display = "none";
       }
       else{
-        x.style.display = "block";
+        x2.style.display = "block";
       }
     }
 </script>
