@@ -10,8 +10,6 @@ from bson.son import SON
 myclient = MongoClient("mongodb://localhost:27017/")
 mydb = myclient["historiales"]
 
-
-
 # devuelve 2 arreglos ( o listas) planos
 # el arreglo Variable con los nombres de la variable a buscar y
 # el arreglo Contador con la cantidad de ocurrencias de cada valor de Variable

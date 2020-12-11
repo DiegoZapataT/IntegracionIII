@@ -166,17 +166,7 @@ def moda(request):
 
     return render(request, "Integracion/g_moda.html", {"parametros":(Var,Moda,Total),"Variable":Variable,"Contador":Contador,"Moda":Moda,"Total":Total})
 
-
 def promedio(request):
-    # if 'datajson' in request.session:
-    #     data = request.session['datajson']
-    #     del request.session['datajson']
-    #     data, datap, lenData, pKeys = dataJson(request, data)
-    #     return render(request, "Integracion/g_promedio.html", {
-    #         'uploaded_file_url': data, 'datajson': data, 'lenData': lenData, 'keysjson': pKeys[0]
-    #     })
-
-    # if 'datajson' not in request.session:
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
@@ -217,40 +207,9 @@ def dataJson(request, data):
             datap.append(data[u]['nombre'])  
 
     return (data, d, lenData, pKeys) 
-    
-
-#def dataPac(request):
-#    if request.method == 'POST' and request.POST.get['spac']:
-#        return render(request, "Integracion/g_promedio.html", {
-#            'dpaciente': 'funcawei', 'uploaded_file_url': 'ti'
-#        })
-        # data = request.session['datajson']
-        # lenData = len(data)
-        
-        # for i in range(0,lenData):
-        #     if data[i]["nombre"] == request.POST.get['spac']:
-        #         dpac = data[i]
-        #         return render(request, "Integracion/g_promedio.html", {
-        #             'dpaciente': dpac, 'uploaded_file_url': 'ti'
-        #         })
-
-
 
 def faq(request):
     return render(request, "Integracion/faq.html")
-
-#def recursiva(json_array):
-#    datos = []
-#    for obj in json_array:
-#        if isinstance(obj, dict):
-#            datos.append(obj.get('id'))
-#            children = obj.get('children', None)
-#            if children:
-#                datos.extend(recursiva(children))
-#        elif isinstance(obj, list):
-#            datos.extend(recursiva(obj))
-#    return datos
-
 
 def ver_datos(request):
     lista_c = listar_colecciones_db()
@@ -287,4 +246,3 @@ def graficov2(request):
         variable, collection = request.POST['drop2'].split('+')
         Variable, Contador, Moda, Total = grafico2.frecuencia(variable, collection)
     return render(request, "Integracion/graficador.html",{ "Variable":Variable,"Contador":Contador,"Moda":Moda,"Total":Total, 'lista_cd_sub':aColeccionesCat})
-

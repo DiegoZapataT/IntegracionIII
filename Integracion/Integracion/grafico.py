@@ -7,9 +7,8 @@ import os
 import collections
 from statistics import multimode
 
-MONGO_URI = 'mongodb://localhost'
 
-client = MongoClient(MONGO_URI)
+client = MongoClient('mongodb://localhost')
 
 #se crea la base de datos y se conecta
 db = client['historiales']
@@ -34,68 +33,68 @@ DataBase = eval(DataBase)
 coleccion.insert_many(DataBase)
 
 #Revisa lo que se envia desde el html para las consultas
-def Ruta(Var):
-    if Var == 'nombre_sesion' or Var == 'fecha' or Var == 'nombre_profesional' or Var == 'profesion' or Var == 'centro_salud':
-        Var == 'sesiones_medica.'+Var
+def Ruta(Consulta):
+    if Consulta == 'nombre_sesion' or Consulta == 'fecha' or Consulta  == 'nombre_profesional' or Consulta  == 'profesion' or Consulta  == 'centro_salud':
+        Consulta  == 'sesiones_medica.'+Consulta 
 
-    if Var == 'tipo' or Var == 'clave' or Var == 'valor':
-        Var = 'sesiones_medica.arquetipos.'+Var
-    return Var
+    if Consulta  == 'tipo' or Consulta  == 'clave' or Consulta  == 'valor':
+        Consulta  = 'sesiones_medica.arquetipos.'+Consulta 
+    return Consulta 
 
-def Frecuencia(Var):
+def Frecuencia(Consulta ):
     Variable = []
-    VariableRecibida = Var 
+    VariableRecibida = Consulta  
     Moda=[]
     Total=0
-    Consulta = []
+    ConsultaMongo = []
 
-    Var = Ruta(Var)
+    Consulta  = Ruta(Consulta )
 
 
     #Dependiendo lo que se pida desde el formulario, se crea una consulta distinta
-    if Var == 'nombre':
+    if Consulta  == 'nombre':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$nombre"},}}
     
-    if Var == 'apellidos':
+    if Consulta  == 'apellidos':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$apellidos"},}}
 
-    if Var == 'rut':
+    if Consulta  == 'rut':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$rut"},}}
 
-    if Var == 'direccion':
+    if Consulta  == 'direccion':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$direccion"},}}
 
-    if Var == 'fecha_nacimiento':
+    if Consulta  == 'fecha_nacimiento':
         ConsultaGrupo = {"$group": { "_id": "$_id", VariableRecibida: {"$push": "$fecha_nacimiento"},}}
     
-    if Var == 'ciudad':
+    if Consulta  == 'ciudad':
         ConsultaGrupo = {"$group": { "_id": "$_id", VariableRecibida: {"$push": "$ciudad"},}} 
               
-    if Var == 'nombre_sesion':
+    if Consulta  == 'nombre_sesion':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.nombre_sesion"},}}
 
-    if Var == 'fecha':
+    if Consulta  == 'fecha':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.fecha"},}}
 
-    if Var == 'nombre_profesional':
+    if Consulta  == 'nombre_profesional':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.nombre_profesional"},}}
     
-    if Var == 'profesion':
+    if Consulta  == 'profesion':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.profesion"},}}
 
-    if Var == 'centro_salud':
+    if Consulta  == 'centro_salud':
         ConsultaGrupo = { "$group": { "_id": "$_id", VariableRecibida: {"$push": "$sesiones_medica.centro_salud"},}}
 
 
     #Order By: ASC
-    #ConsultaOrdenada = {'$sort':{'_id':1}}
-    #print('diccionaro grupo: ', ConsultaGrupo)
+    ConsultaOrdenada = {'$sort':{'_id':1}}
+    print('diccionaro grupo: ', ConsultaGrupo)
 
-    Consulta.append(ConsultaGrupo)
-    print(Consulta)
+    ConsultaMongo.append(ConsultaGrupo)
+    print(ConsultaMongo)
 
     #se envia la consulta a mongo y luego se recorre para guardar los resultados que se obtengan de la misma
-    respuesta = db.arquetipos.aggregate(Consulta)
+    respuesta = db.arquetipos.aggregate(ConsultaMongo)
     for enviar in respuesta:
         Variable.append(enviar[VariableRecibida])
 
