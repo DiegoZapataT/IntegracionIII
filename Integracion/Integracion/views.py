@@ -18,6 +18,7 @@ import json
 import os
 import Integracion.grafico as grafico
 import Integracion.grafico2 as grafico2
+import Integracion.paciente_stats as paciente_stats
 from bson.json_util import dumps
 
 
@@ -158,8 +159,12 @@ def moda(request):
     Total=0
 
     if request.method == "POST":
-        Var = request.POST['drop2']
-        Variable, Contador, Moda, Total = grafico.Frecuencia(Var)
+        if request.POST['paciente_nombre']:
+            paciente = request.POST['paciente_nombre']
+            return redirect('/moda/' + paciente + '/')
+        if request.POST['drop2']:
+            Var = request.POST['drop2']
+            Variable, Contador, Moda, Total = grafico.Frecuencia(Var)
 
     print("Contador :",Contador)
     print(Variable)
@@ -246,3 +251,10 @@ def graficov2(request):
         variable, collection = request.POST['drop2'].split('+')
         Variable, Contador, Moda, Total = grafico2.frecuencia(variable, collection)
     return render(request, "Integracion/graficador.html",{ "Variable":Variable,"Contador":Contador,"Moda":Moda,"Total":Total, 'lista_cd_sub':aColeccionesCat})
+
+def buscador_paciente(request, paciente):
+    np = paciente
+    #medicos, hospitales, profesionales, info, sesiones
+    v0,c0,v1,c1,v2,c2, info, sesiones, cant = paciente_stats.frecuencia(paciente)
+    print(v0,c0)
+    return render(request, "Integracion/buscador.html",{"np":np, "v0": v0, "c0": c0, "v1":v1, "c1":c1, "v2":v2, "c2":c2, "info":info,"sesiones":sesiones, "cant":cant})

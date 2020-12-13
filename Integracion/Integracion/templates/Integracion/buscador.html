@@ -1,0 +1,110 @@
+{% extends "Integracion/tipo_grafico.html" %}
+{% block title %}Moda{% endblock %}
+{% block content %}
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+
+<h3>Información del paciente</h3>
+
+<table >
+    <tr><td>Nombre:</td><td>{{info.nombre}}</td></tr>
+    <tr><td>Rut:</td><td>{{info.rut}}</td></tr>
+    <tr><td>Dirección:</td><td>{{info.direccion}}</td></tr>
+    <tr><td>Fecha de nacimiento:</td><td>{{info.fecha_nacimiento}}</td></tr>
+    <tr><td>Ciudad:</td><td>{{info.ciudad}}</td></tr>
+</table>
+<br><br><br>
+<h3>Sesiones del paciente: {{cant}}</h3>
+
+
+{%for v in sesiones%}
+{{v.sesion}}<br>
+{%endfor%}
+<br><br><br><br>
+
+    <h3 style="text-align:center"><b>Médicos que lo atendieron</b></h3>
+    <div style="text-align:center" id="graf_por_medico" style="width:600px;height:400px;"></div><br><br>
+    <h3 style="text-align:center" ><b>Hospitales visitados</b></h3>
+    <div style="text-align:center" id="graf_por_hospital" style="width:600px;height:400px;"></div><br><br>
+    <h3 style="text-align:center"><b>Médicos por profesión visitados</b></h3>
+    <div style="text-align:center" id="graf_por_profesion" style="width:600px;height:400px;"></div>
+
+<script>
+
+    var variable0 = '{{v0}}'	; var contador0='{{c0}}';
+    var variable1 = '{{v1}}'	; var contador1='{{c1}}';
+    var variable2 = '{{v2}}'	; var contador2='{{c2}}';
+
+    function eje_x(variable){
+        variable = variable.replace(/&quot;/g,'');
+        variable = variable.replace('[',''); variable = variable.replace(']','');
+        variable = variable.toString(); variable = variable.split(',')
+
+        return variable;
+    };
+
+    function eje_y(contador){
+        contador = contador.replace('[','');
+        contador = contador.replace(']','');
+        contador = contador.split(',').map(Number);
+
+        return contador;
+    }
+
+    variable0 = eje_x(variable0);
+    var data0 = [{
+      values: contador0,
+      labels: variable0,
+      type: 'pie'
+    }];
+
+    variable1 = eje_x(variable1);
+    var data1 = [{
+      values: contador1,
+      labels: variable1,
+      type: 'pie'
+    }];
+
+
+
+
+    // esto no lo uso, es para tipo scatter
+	var data2 = [
+		{
+			x: eje_x(variable2),
+			y: eje_y(contador2),
+			type: 'scatter',
+			marker: {
+				color: 'rgb(222,164,32)',
+				opacity:1,
+				line: {
+					color:'rgb(154,54,45)',
+					width: 1.5
+				}
+			}
+		}
+	]
+
+	variable2 = eje_x(variable2);
+    var data2 = [{
+      values: contador2,
+      labels: variable2,
+      type: 'pie'
+    }];
+
+
+    var layout = {
+      height: 400,
+      width: 500
+    };
+
+	Plotly.newPlot('graf_por_medico', data0);
+	Plotly.newPlot('graf_por_hospital', data1);
+	Plotly.newPlot('graf_por_profesion', data2);
+
+</script>
+
+
+
+
+{% endblock %}
