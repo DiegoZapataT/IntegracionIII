@@ -1,32 +1,40 @@
 {% extends "Integracion/tipo_grafico.html" %}
 {% block title %}Moda{% endblock %}
+
+
 {% block content %}
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
-
+<style>.todo{padding: 5px 10px;}</style>
+<div class="todo">
 <h3>Información del paciente</h3>
-
-<table >
-    <tr><td>Nombre:</td><td>{{info.nombre}}</td></tr>
-    <tr><td>Rut:</td><td>{{info.rut}}</td></tr>
-    <tr><td>Dirección:</td><td>{{info.direccion}}</td></tr>
-    <tr><td>Fecha de nacimiento:</td><td>{{info.fecha_nacimiento}}</td></tr>
-    <tr><td>Ciudad:</td><td>{{info.ciudad}}</td></tr>
+<style> td {padding-right:10px}</style>
+<table>
+    <tr><td>Nombre: </td><td>{{info.nombre}}</td></tr>
+    <tr><td>Rut: </td><td>{{info.rut}}</td></tr>
+    <tr><td>Dirección: </td><td>{{info.direccion}}</td></tr>
+    <tr><td>Fecha de nacimiento: </td><td>{{info.fecha_nacimiento}}</td></tr>
+    <tr><td>Ciudad: </td><td>{{info.ciudad}}</td></tr>
 </table>
 <br><br><br>
 <h3>Sesiones del paciente: {{cant}}</h3>
 
 
 {%for v in sesiones%}
-{{v.sesion}}<br>
+    <b>Nombre de sesión:</b> {{v.sesion.nombre_sesion}}<br>
+    <b>Fecha:</b> {{v.sesion.fecha}}<br>
+    <b>Profesional:</b> {{v.sesion.nombre_profesional}}, {{v.sesion.profesion}}<br>
+    <b>Centro de salud:</b> {{v.sesion.centro_salud}}<br>
+<hr>
 {%endfor%}
+
 <br><br><br><br>
 
-    <h3 style="text-align:center"><b>Médicos que lo atendieron</b></h3>
-    <div style="text-align:center" id="graf_por_medico" style="width:600px;height:400px;"></div><br><br>
-    <h3 style="text-align:center" ><b>Hospitales visitados</b></h3>
-    <div style="text-align:center" id="graf_por_hospital" style="width:600px;height:400px;"></div><br><br>
-    <h3 style="text-align:center"><b>Médicos por profesión visitados</b></h3>
+
+    <div style="text-align:center" id="graf_por_medico" style="width:600px;height:400px;"></div><br>
+
+    <div style="text-align:center" id="graf_por_hospital" style="width:600px;height:400px;"></div><br>
+
     <div style="text-align:center" id="graf_por_profesion" style="width:600px;height:400px;"></div>
 
 <script>
@@ -52,6 +60,7 @@
     }
 
     variable0 = eje_x(variable0);
+    contador0 = eje_y(contador0);
     var data0 = [{
       values: contador0,
       labels: variable0,
@@ -59,12 +68,15 @@
     }];
 
     variable1 = eje_x(variable1);
+    contador1 = eje_y(contador1);
+
     var data1 = [{
       values: contador1,
       labels: variable1,
       type: 'pie'
     }];
-
+    console.log(contador1);
+    console.log(variable1);
 
 
 
@@ -86,6 +98,7 @@
 	]
 
 	variable2 = eje_x(variable2);
+	contador2 = eje_y(contador2);
     var data2 = [{
       values: contador2,
       labels: variable2,
@@ -93,18 +106,15 @@
     }];
 
 
-    var layout = {
-      height: 400,
-      width: 500
-    };
 
-	Plotly.newPlot('graf_por_medico', data0);
-	Plotly.newPlot('graf_por_hospital', data1);
-	Plotly.newPlot('graf_por_profesion', data2);
+
+	Plotly.newPlot('graf_por_medico', data0, {title:{text:'Médicos que lo atendieron',font:{size:26,color:'#5a5c69'}},paper_bgcolor: '#f8f9fc'});
+	Plotly.newPlot('graf_por_hospital', data1, {title:{text:'Centros de salud visitados',font:{size:26,color:'#5a5c69'}},paper_bgcolor: '#f8f9fc'});
+	Plotly.newPlot('graf_por_profesion', data2,{title:{text:'Médicos por profesión visitados', font:{size:26,color:'#5a5c69'}},paper_bgcolor: '#f8f9fc'});
 
 </script>
 
-
+</div>
 
 
 {% endblock %}

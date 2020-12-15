@@ -1,12 +1,13 @@
+
 {% extends "Integracion/tipo_grafico.html" %}
+{% load static %}
 {% block title %}Moda{% endblock %}
 {% block content %}
 <head>
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
-<h1 style="text-align:center">Grafico</h1>
-<h3 style="text-align:center"><b>Frecuencia de repeticion para historiales clinicos</b></h1>
+<h3 style="text-align:center"><b>Frecuencia de repeticion para historiales clinicos</b></h3>
 
 
 <!--<img src="data:image/png;base64,{{data}}" width="600px" /-->
@@ -78,9 +79,9 @@ donde se realiza un agrupamiento segun la variable que se solicite.</p>
 			<option value="valor">Valor</option>
 		</optgroup>
 	</select>
-	<br>
+
 	<input type="submit" value="Generar Grafico" class="btn btn-primary">
-	<br>
+	<br><br>
 	<b style="text-align:center">Resultado de la consulta:</b>
 	<div class="card bg-light mb-3">
 		<div class="card-header">El dato que se repitio más veces es/son: {{parametros.1}}</div>
@@ -88,9 +89,9 @@ donde se realiza un agrupamiento segun la variable que se solicite.</p>
 	</div>
 
 	<br><br>
-	<label for="paciente_nombre">Buscar paciente por rut (sin puntos, con guión y dv):</label>
+	<label for="paciente_nombre"><b>Buscar paciente por rut</b> (sin puntos, con guión y dv):</label>
 	<input type="txt" id="paciente_nombre" name="paciente_nombre">
-	<input type="submit" value="aca va una img de lupa jaj">
+	<input type="image" src="{% static 'img/search.png' %}" width="42px" height="42px">
 	</form>
 
 	<script>
