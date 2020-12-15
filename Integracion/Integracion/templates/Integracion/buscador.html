@@ -30,11 +30,11 @@
 
 <br><br><br><br>
 
-    <h3 style="text-align:center"><b>Médicos que lo atendieron</b></h3>
-    <div style="text-align:center" id="graf_por_medico" style="width:600px;height:400px;"></div><br><br>
-    <h3 style="text-align:center" ><b>Centros de salud visitados</b></h3>
-    <div style="text-align:center" id="graf_por_hospital" style="width:600px;height:400px;"></div><br><br>
-    <h3 style="text-align:center"><b>Médicos por profesión visitados</b></h3>
+
+    <div style="text-align:center" id="graf_por_medico" style="width:600px;height:400px;"></div><br>
+
+    <div style="text-align:center" id="graf_por_hospital" style="width:600px;height:400px;"></div><br>
+
     <div style="text-align:center" id="graf_por_profesion" style="width:600px;height:400px;"></div>
 
 <script>
@@ -106,14 +106,11 @@
     }];
 
 
-    var layout = {
-      height: 400,
-      width: 500
-    };
 
-	Plotly.newPlot('graf_por_medico', data0);
-	Plotly.newPlot('graf_por_hospital', data1);
-	Plotly.newPlot('graf_por_profesion', data2);
+
+	Plotly.newPlot('graf_por_medico', data0, {title:{text:'Médicos que lo atendieron',font:{size:26,color:'#5a5c69'}},paper_bgcolor: '#f8f9fc'});
+	Plotly.newPlot('graf_por_hospital', data1, {title:{text:'Centros de salud visitados',font:{size:26,color:'#5a5c69'}},paper_bgcolor: '#f8f9fc'});
+	Plotly.newPlot('graf_por_profesion', data2,{title:{text:'Médicos por profesión visitados', font:{size:26,color:'#5a5c69'}},paper_bgcolor: '#f8f9fc'});
 
 </script>
 
