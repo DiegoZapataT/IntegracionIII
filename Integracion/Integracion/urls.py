@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Integracion.views import index, tutorial, charts, users, moda, faq, bfor, listas, tupla, logicos, condicional, bwhile, ver_datos, ver_datos2, PCregreCSV, PCverARQUE, promedio, graficov2, buscador_paciente
+from Integracion.views import index, tutorial, charts, users, moda, faq, bfor, listas, tupla, logicos, condicional, bwhile, ver_datos, ver_datos2, PCregreCSV, PCverARQUE, promedio, graficov2, buscador_paciente, barra
 from mongoconnect import views
 from django.conf import settings
 from django.conf.urls.static import static
  
 urlpatterns = [
     path('subir_archivo/', promedio),
+    path('g_barra/', barra),
     path('PCverARQUE/', PCverARQUE),
     path('PCregreCSV/', PCregreCSV),
     path('admin', admin.site.urls),

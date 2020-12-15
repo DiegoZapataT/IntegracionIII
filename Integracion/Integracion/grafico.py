@@ -37,8 +37,6 @@ def Ruta(Consulta):
     if Consulta == 'nombre_sesion' or Consulta == 'fecha' or Consulta  == 'nombre_profesional' or Consulta  == 'profesion' or Consulta  == 'centro_salud':
         Consulta  == 'sesiones_medica.'+Consulta 
 
-    if Consulta  == 'tipo' or Consulta  == 'clave' or Consulta  == 'valor':
-        Consulta  = 'sesiones_medica.arquetipos.'+Consulta 
     return Consulta 
 
 def Frecuencia(Consulta ):

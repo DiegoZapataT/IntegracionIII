@@ -1,0 +1,86 @@
+
+{% extends "Integracion/tipo_grafico.html" %}
+{% load static %}
+{% block title %}Moda{% endblock %}
+{% block content %}
+<head>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<h3 style="text-align:center"><b>Frecuencia de repeticion para historiales clinicos</b></h3>
+
+
+<!--<img src="data:image/png;base64,{{data}}" width="600px" /-->
+<p>En esta pagina se puede observar y consultar por los datos de los pacientes y los datos de las sesiones, mediante una consulta hacia MongoDB que es nuestra base de datos
+donde se realiza un agrupamiento segun la variable que se solicite.</p>
+<div style="text-align:center" id="tester" style="width:600px;height:450px;">
+<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script>
+
+	var Variable = '{{Variable}}'	; var Counter='{{Contador}}';
+
+	function eje_x(Variable){
+		Variable = Variable.replace(/&quot;/g,'');
+		Variable = Variable.replace('[',''); Variable = Variable.replace(']','');
+		Variable = Variable.toString(); Variable = Variable.split(',')
+		console.log(Variable)
+		return Variable;
+	};
+
+	function eje_y(aCounter){
+		aCounter = aCounter.replace('[',''); 
+		aCounter = aCounter.replace(']','');
+		aCounter = aCounter.split(',').map(Number);
+		console.log(aCounter);
+		return aCounter;
+	}
+
+	var data = [
+		{
+			x: eje_x(Variable),
+			y: eje_y(Counter),
+			type: 'bar',
+			marker: {
+				color: 'rgb(222,164,32)',
+				opacity:1,
+				line: {
+					color:'rgb(154,54,45)',
+					width: 1.5
+				}
+			}
+		}
+	]
+
+	Plotly.newPlot('tester', data)
+</script>
+</div>
+<form method="post" style="text-align:left">
+	{% csrf_token %}
+	<b>Graficar valores individuales:</b>
+	<select name = "drop2">
+		<optgroup label="Paciente">
+			<option value="nombre">Nombre Paciente</option>
+			<option value="apellidos">Apellidos Paciente</option>
+			<option value="rut">Rut Paciente</option>
+			<option value="direccion">Direccion Paciente</option>
+			<option value="fecha_nacimiento">Fecha de Nacimiento Paciente</option>
+			<option value="ciudad">Ciudad de Residencia Paciente</option>
+		</optgroup>
+		<optgroup label="Sesion Medica">
+			<option value="nombre_sesion">Nombre Sesion</option>
+			<option value="fecha">Fecha Sesion</option>
+			<option value="nombre_profesional">Nombre Medico</option>
+			<option value="profesion">Especialidad Medico</option>	
+			<option value="centro_salud">Centro de Salud</option>	
+		</optgroup>
+	</select>
+
+	<input type="submit" value="Generar Grafico" class="btn btn-primary">
+	<br><br>
+	<b style="text-align:center">Resultado de la consulta:</b>
+	<div class="card bg-light mb-3">
+		<div class="card-header">El dato que se repitio más veces es/son: {{parametros.1}}</div>
+		<div class="card-header">Cantidad de datos trabajados: {{parametros.2}}</div>
+	</div>
+
+{% endblock %}

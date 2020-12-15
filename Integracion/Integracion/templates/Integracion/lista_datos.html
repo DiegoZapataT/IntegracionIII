@@ -2,8 +2,8 @@
 
 {% block title %}Base de datos{% endblock %}
 {% block content %}
-<h3>Bases de datos disponibles:</h3><br>
-<form action="" method="post" id="form_listac">
+<h3 style='text-align:center'>Bases de datos disponibles:</h3><br>
+<form style='text-align:center' action="" method="post" id="form_listac">
   {% csrf_token %}
   <select id="listado_colecciones" name="listado_colecciones" size="3" multiple>
   {% for i in lista_c %}
@@ -13,7 +13,7 @@
   <input type="submit" value="Ver datos">
 </form>
 <br><br>
-No ha realizado una búsqueda
+<h4 style='text-align:center'>No ha realizado una búsqueda</h4>
 
 
 {% endblock %}

@@ -171,6 +171,23 @@ def moda(request):
 
     return render(request, "Integracion/g_moda.html", {"parametros":(Var,Moda,Total),"Variable":Variable,"Contador":Contador,"Moda":Moda,"Total":Total})
 
+def barra(request):
+    Var=''
+    Contador=[]
+    Variable=[]
+    Moda=[]
+    Total=0
+
+    if request.method == "POST":
+        if request.POST['drop2']:
+            Var = request.POST['drop2']
+            Variable, Contador, Moda, Total = grafico.Frecuencia(Var)
+
+    print("Contador :",Contador)
+    print(Variable)
+
+    return render(request, "Integracion/g_barra.html", {"parametros":(Var,Moda,Total),"Variable":Variable,"Contador":Contador,"Moda":Moda,"Total":Total})
+
 def promedio(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
